@@ -8,13 +8,14 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String choice = null;
+        String choice;
         FileSystem fileSystem = null;
+        Scanner scanner = new Scanner(System.in);
 
         do {
             System.out.println("Choose a command:");
             System.out.println("open, close, save, save as, help, exit");
-            Scanner scanner = new Scanner(System.in);
+            choice = scanner.nextLine();
             switch (choice) {
                 case "open": new OpenFileCommand(fileSystem);
                     break;
@@ -30,6 +31,6 @@ public class Main {
                     break;
 
             }
-        } while (choice != "exit");
+        } while (!choice.equals("exit"));
     }
 }
