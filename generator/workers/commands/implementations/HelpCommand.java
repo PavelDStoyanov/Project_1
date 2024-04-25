@@ -2,16 +2,17 @@ package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.comman
 
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.commands.Command;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.commands.FileSystem;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.request.FileSystemImpl;
 
 public class HelpCommand implements Command {
-    private FileSystem fileSystem;
+    private FileSystemImpl fileSystem;
 
-    public HelpCommand(FileSystem fileSystem) {
+    public HelpCommand(FileSystemImpl fileSystem) {
         this.fileSystem = fileSystem;
     }
 
     @Override
-    public void execute() {
-        this.fileSystem.help();
+    public String execute() {
+        return this.fileSystem.help();
     }
 }
