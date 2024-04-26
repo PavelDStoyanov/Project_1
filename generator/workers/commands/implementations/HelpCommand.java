@@ -12,7 +12,7 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public String execute() {
-        return this.fileSystem.help();
+    public void execute() {
+        this.fileSystem.help();
     }
 }

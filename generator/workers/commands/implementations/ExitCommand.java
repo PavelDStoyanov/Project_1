@@ -12,7 +12,7 @@ public class ExitCommand implements Command {
     }
 
     @Override
-    public String execute() {
-        return this.fileSystem.exit();
+    public void execute() {
+        this.fileSystem.exit();
     }
 }

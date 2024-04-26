@@ -12,7 +12,7 @@ public class CloseFileCommand implements Command {
     }
 
     @Override
-    public String execute() {
-        return this.fileSystem.closeFile();
+    public void execute() {
+        this.fileSystem.closeFile();
     }
 }

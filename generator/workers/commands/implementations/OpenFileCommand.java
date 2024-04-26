@@ -16,7 +16,7 @@ public class OpenFileCommand implements Command {
     }
 
     @Override
-    public String execute() {
-        return this.fileSystem.openFile(file,"Successfully opened file.xml");
+    public void execute() {
+        this.fileSystem.openFile(file,"Successfully opened file.xml");
     }
 }

@@ -12,7 +12,7 @@ public class SaveFileAsCommand implements Command {
     }
 
     @Override
-    public String execute() {
-        return this.fileSystem.saveFileAs();
+    public void execute() {
+        this.fileSystem.saveFileAs();
     }
 }

@@ -17,23 +17,33 @@ public class Main {
 
         do {
             System.out.println("Choose a command:");
-            System.out.println("open, close, save, save as, help, exit");
+            System.out.println("open, close, save, saveAs, help, exit");
+            System.out.print("> ");
             choice = scanner.nextLine();
             switch (choice) {
-                case "open": OpenFileCommand openFileCommand = new OpenFileCommand(fileSystem, file);
-                    System.out.println(openFileCommand.execute());
+                case "open":
+                    OpenFileCommand openFileCommand = new OpenFileCommand(fileSystem, file);
+                    openFileCommand.execute();
                     break;
-                case "close": CloseFileCommand closeFileCommand = new CloseFileCommand(fileSystem);
-                    System.out.println(closeFileCommand.execute());
+                case "close":
+                    CloseFileCommand closeFileCommand = new CloseFileCommand(fileSystem);
+                    closeFileCommand.execute();
                     break;
-                case "save": new SaveFileCommand(fileSystem);
+                case "save":
+                    SaveFileCommand saveFileCommand = new SaveFileCommand(fileSystem);
+                    saveFileCommand.execute();
                     break;
-                case "save as": new SaveFileAsCommand(fileSystem);
+                case "saveAs":
+                    SaveFileAsCommand saveFileAsCommand =  new SaveFileAsCommand(fileSystem);
+                    saveFileAsCommand.execute();
                     break;
-                case "help": new HelpCommand(fileSystem);
-                    System.out.println("Help");
+                case "help":
+                    HelpCommand helpCommand = new HelpCommand(fileSystem);
+                    helpCommand.execute();
                     break;
-                case "exit": new ExitCommand(fileSystem);
+                case "exit":
+                    ExitCommand exitCommand = new ExitCommand(fileSystem);
+                    exitCommand.execute();
                     break;
 
             }
