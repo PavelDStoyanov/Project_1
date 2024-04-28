@@ -5,18 +5,19 @@ import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.comma
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.request.FileSystemImpl;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class OpenFileCommand implements Command {
     private FileSystemImpl fileSystem;
-    private File file;
+    private Path filePath;
 
-    public OpenFileCommand(FileSystemImpl fileSystem, File file) {
+    public OpenFileCommand(FileSystemImpl fileSystem, Path filePath) {
         this.fileSystem = fileSystem;
-        this.file = file;
+        this.filePath = filePath;
     }
 
     @Override
     public void execute() {
-        this.fileSystem.openFile(file,"Successfully opened file.xml");
+        this.fileSystem.openFile(filePath,"Successfully opened file.xml");
     }
 }

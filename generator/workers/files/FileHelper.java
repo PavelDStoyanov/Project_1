@@ -37,7 +37,7 @@ public class FileHelper implements ReadFile, WriteFile {
 
     }
 
-    private void createDirectory(Path path) throws IOException{
+    public void createDirectory(Path path) throws IOException{
         if(Files.notExists(path)){
             Files.createDirectory(path);
         }

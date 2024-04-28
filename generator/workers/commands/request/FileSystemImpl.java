@@ -1,15 +1,30 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.request;
 
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.commands.FileSystem;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.FileHelper;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class FileSystemImpl implements FileSystem {
 
 
     @Override
-    public void openFile(File file, String input) {
-        System.out.println("Successfully opened file.xml");
+    public void openFile(Path filePath, String input) {
+        try {
+            FileHelper fileHelper = new FileHelper();
+            if(Files.notExists(filePath)){
+                fileHelper.createDirectory(filePath);
+            }
+            fileHelper.read(filePath);
+            System.out.println("Successfully opened file.xml");
+        }catch(IOException e){
+            System.out.println("Exception ocured: " + e);
+        }
+        
     }
 
     @Override

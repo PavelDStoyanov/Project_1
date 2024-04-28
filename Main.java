@@ -6,6 +6,7 @@ import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.command
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.request.FileSystemImpl;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class Main {
@@ -16,7 +17,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         BasicCommands basicCommands;
 
-        File file = null;
+        Path filePath = null;
 
 
         do {
@@ -27,7 +28,7 @@ public class Main {
             basicCommands = BasicCommands.valueOf(choice);
             switch (basicCommands) {
                 case open:
-                    OpenFileCommand openFileCommand = new OpenFileCommand(fileSystem, file);
+                    OpenFileCommand openFileCommand = new OpenFileCommand(fileSystem, filePath);
                     openFileCommand.execute();
                     break;
                 case close:
