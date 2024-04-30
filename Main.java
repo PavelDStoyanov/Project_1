@@ -36,7 +36,7 @@ public class Main {
                     closeFileCommand.execute();
                     break;
                 case save:
-                    SaveFileCommand saveFileCommand = new SaveFileCommand(fileSystem);
+                    SaveFileCommand saveFileCommand = new SaveFileCommand(fileSystem, filePath);
                     saveFileCommand.execute();
                     break;
                 case saveAs:

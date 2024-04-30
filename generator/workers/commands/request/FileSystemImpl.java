@@ -24,7 +24,7 @@ public class FileSystemImpl implements FileSystem {
         }catch(IOException e){
             System.out.println("Exception ocured: " + e);
         }
-        
+
     }
 
     @Override
@@ -34,8 +34,18 @@ public class FileSystemImpl implements FileSystem {
     }
 
     @Override
-    public void saveFile() {
-        System.out.println("Successfully saved file.xml");
+    public void saveFile(Path filePath, String input) {
+        try {
+            FileHelper fileHelper = new FileHelper();
+            if(Files.notExists(filePath)){
+                fileHelper.createDirectory(filePath);
+            }
+            fileHelper.write(input);
+            System.out.println("Successfully saved file.xml");
+        }catch(IOException e){
+            System.out.println("Exception ocured: " + e);
+        }
+
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.nio.file.Path;
 public interface FileSystem {
     void openFile(Path filePath, String input);
     void closeFile();
-    void saveFile();
+    void saveFile(Path filePath, String input);
     void saveFileAs();
     void help();
     void exit();
