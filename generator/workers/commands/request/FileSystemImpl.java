@@ -10,25 +10,27 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class FileSystemImpl implements FileSystem {
-
+    private Path file;
 
     @Override
-    public void openFile(Path filePath, String input) {
+    public void openFile(Path filePath) {
         try {
             FileHelper fileHelper = new FileHelper();
             if(Files.notExists(filePath)){
                 fileHelper.createDirectory(filePath);
             }
+            this.file = filePath;
             fileHelper.read(filePath);
             System.out.println("Successfully opened file.xml");
         }catch(IOException e){
-            System.out.println("Exception ocured: " + e);
+            System.out.println("Exception occurred: " + e);
         }
 
     }
 
     @Override
     public void closeFile() {
+        this.file = null;
         System.out.println("Successfully closed file.xml");
 
     }
@@ -37,20 +39,27 @@ public class FileSystemImpl implements FileSystem {
     public void saveFile(Path filePath, String input) {
         try {
             FileHelper fileHelper = new FileHelper();
-            if(Files.notExists(filePath)){
-                fileHelper.createDirectory(filePath);
-            }
-            fileHelper.write(input);
+            fileHelper.write(this.file, input);
             System.out.println("Successfully saved file.xml");
         }catch(IOException e){
-            System.out.println("Exception ocured: " + e);
+            System.out.println("Exception occurred: " + e);
         }
 
     }
 
     @Override
-    public void saveFileAs() {
-        System.out.println("Successfully saved another file.xml");
+    public void saveFileAs(Path filePath, String input) {
+        try {
+            FileHelper fileHelper = new FileHelper();
+            if(Files.notExists(filePath)){
+                fileHelper.createDirectory(filePath);
+            }
+            fileHelper.write(filePath, input);
+            System.out.println("Successfully saved another file.xml");
+        }catch(IOException e){
+        System.out.println("Exception occurred: " + e);
+    }
+
     }
 
     @Override

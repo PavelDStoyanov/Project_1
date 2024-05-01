@@ -18,6 +18,6 @@ public class OpenFileCommand implements Command {
 
     @Override
     public void execute() {
-        this.fileSystem.openFile(filePath,"Successfully opened file.xml");
+        this.fileSystem.openFile(filePath);
     }
 }

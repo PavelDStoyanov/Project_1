@@ -40,7 +40,7 @@ public class Main {
                     saveFileCommand.execute();
                     break;
                 case saveAs:
-                    SaveFileAsCommand saveFileAsCommand =  new SaveFileAsCommand(fileSystem);
+                    SaveFileAsCommand saveFileAsCommand =  new SaveFileAsCommand(fileSystem, filePath);
                     saveFileAsCommand.execute();
                     break;
                 case help:

@@ -17,9 +17,10 @@ public class FileHelper implements ReadFile, WriteFile {
     public FileHelper() throws FileNotFoundException {}
 
     @Override
-    public void write(String data) throws IOException {
+    public void write(Path filePath, String data) throws IOException {
         try {
-            Files.write(file.toPath(), data.getBytes());
+            Files.write(filePath, data.getBytes());
+            //Files.write(file.toPath(), data.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
             throw e;

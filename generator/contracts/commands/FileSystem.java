@@ -4,10 +4,10 @@ import java.io.File;
 import java.nio.file.Path;
 
 public interface FileSystem {
-    void openFile(Path filePath, String input);
+    void openFile(Path filePath);
     void closeFile();
     void saveFile(Path filePath, String input);
-    void saveFileAs();
+    void saveFileAs(Path filePath, String input);
     void help();
     void exit();
 }
