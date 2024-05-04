@@ -17,6 +17,6 @@ public class OpenFileCommand implements Command {
 
     @Override
     public void execute() {
-        this.fileSystem.getState().openFile(filePath);
+        this.fileSystem.getState().openFile(fileSystem, filePath);
     }
 }

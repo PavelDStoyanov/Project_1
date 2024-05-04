@@ -17,6 +17,6 @@ public class SaveFileCommand implements Command {
 
     @Override
     public void execute() {
-        this.fileSystem.getState().saveFile(filePath, "Draft");
+        this.fileSystem.getState().saveFile(filePath, "Drafton");
     }
 }

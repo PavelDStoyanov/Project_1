@@ -1,6 +1,7 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.states;
 
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states.FileSystemState;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.FileHelper;
 
 import java.io.IOException;
@@ -10,25 +11,31 @@ import java.nio.file.Path;
 public class FileSystemOpenState implements FileSystemState {
     private Path file;
 
+
     @Override
-    public void openFile(Path filePath) {
+    public void openFile(FileSystem fileSystem, Path filePath) {
         try {
             FileHelper fileHelper = new FileHelper();
             if(Files.notExists(filePath)){
                 fileHelper.createDirectory(filePath);
             }
             this.file = filePath;
-            fileHelper.read(filePath);
-            System.out.println("Successfully opened file.xml");
+            String file = fileHelper.read(filePath);
+
+            System.out.println("Successfully opened file.xml, file content: ");
+            System.out.println(file);
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
         }
 
+        //System.out.println("A file is already open, close the file to open a new one");
     }
 
     @Override
-    public void closeFile() {
+    public void closeFile(FileSystem fileSystem) {
+
         this.file = null;
+        fileSystem.setState(new FileSystemClosedState());
         System.out.println("Successfully closed file.xml");
 
     }
@@ -42,6 +49,7 @@ public class FileSystemOpenState implements FileSystemState {
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
         }
+
 
     }
 

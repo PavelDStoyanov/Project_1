@@ -1,33 +1,27 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.states;
 
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states.FileSystemState;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.FileHelper;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class FileSystemClosedState implements FileSystemState {
-    private Path file;
+
     @Override
-    public void openFile(Path filePath) {
-//        try {
-//            FileHelper fileHelper = new FileHelper();
-//            if(Files.notExists(filePath)){
-//                fileHelper.createDirectory(filePath);
-//            }
-//            this.file = filePath;
-//            fileHelper.read(filePath);
-//            System.out.println("Successfully opened file.xml");
-//        }catch(IOException e){
-//            System.out.println("Exception occurred: " + e);
-//        }
-        System.out.println("Op");
+    public void openFile(FileSystem fileSystem, Path filePath) {
+        FileSystemOpenState fileSystemOpenState = new FileSystemOpenState();
+        fileSystemOpenState.openFile(fileSystem,filePath);
+        fileSystem.setState(fileSystemOpenState);
     }
 
     @Override
-    public void closeFile() {
+    public void closeFile(FileSystem fileSystem) {
         System.out.println("A file should be opened first");
+
     }
 
     @Override
@@ -55,4 +49,6 @@ public class FileSystemClosedState implements FileSystemState {
     public void exit() {
         System.out.println("Exiting the program...");
     }
+
+
 }

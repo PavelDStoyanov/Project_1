@@ -13,6 +13,6 @@ public class CloseFileCommand implements Command {
 
     @Override
     public void execute() {
-        this.fileSystem.getState().closeFile();
+        this.fileSystem.getState().closeFile(fileSystem);
     }
 }
