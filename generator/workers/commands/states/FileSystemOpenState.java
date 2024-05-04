@@ -1,15 +1,13 @@
-package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.request;
+package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.states;
 
-import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.commands.FileSystem;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states.FileSystemState;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.FileHelper;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class FileSystemImpl implements FileSystem {
+public class FileSystemOpenState implements FileSystemState {
     private Path file;
 
     @Override
