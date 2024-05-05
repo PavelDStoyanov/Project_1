@@ -4,9 +4,10 @@ import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.comma
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.BasicCommands;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.implementations.*;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
-import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.states.FileSystemOpenState;
 
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -15,15 +16,53 @@ public class Main {
         String choice;
         FileSystem fileSystem = new FileSystem();
         Scanner scanner = new Scanner(System.in);
-        BasicCommands basicCommands = null;
+        BasicCommands basicCommands = BasicCommands.help;
         String input = "Teston";
         String filePathFolder = "D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\";
-        Path filePath;
-        //Path filePath1 = Path.of("D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\");
+        Path defaultFilePath = Path.of("D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\default.txt");
         //Path filePath2 = Path.of("D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\new.txt");
+        Path filePath = defaultFilePath;
+        Map<BasicCommands,Command> menu = new HashMap<>();
 
 
-        do {
+
+        do{
+            System.out.println("\nChoose a command:");
+            System.out.println("open <file>, close, save, saveas <file>, help, exit");
+            System.out.print("> ");
+            choice = scanner.nextLine().toLowerCase();
+            String[] inputs = choice.split(" ");
+            try{
+                basicCommands = BasicCommands.valueOf(inputs[0]);
+            }catch (Exception e){
+                System.out.println("This command does not exist");
+                continue;
+            }
+            if(inputs.length > 1) {
+                filePath = Path.of(filePathFolder + inputs[1]);
+            }else{
+                filePath = defaultFilePath;
+            }
+            menu.put(BasicCommands.open, new OpenFileCommand(fileSystem,filePath));
+            menu.put(BasicCommands.close, new CloseFileCommand(fileSystem));
+            menu.put(BasicCommands.save, new SaveFileCommand(fileSystem, input));
+            menu.put(BasicCommands.saveas, new SaveFileAsCommand(fileSystem,filePath,input));
+            menu.put(BasicCommands.help, new HelpCommand(fileSystem));
+            menu.put(BasicCommands.exit, new ExitCommand(fileSystem));
+
+
+//            if(menu.containsKey(basicCommands)){
+//                fileSystem.execute(menu.get(basicCommands));
+//            }else{
+//                System.out.println("/This command does not exist");
+//            }
+
+            fileSystem.execute(menu.get(basicCommands));
+
+        }while(!basicCommands.equals(BasicCommands.exit));
+
+
+        /*do {
             System.out.println("\nChoose a command:");
             System.out.println("open <file>, close, save, saveas <file>, help, exit");
             System.out.print("> ");
@@ -82,6 +121,6 @@ public class Main {
                     break;
 
             }
-        } while (!basicCommands.equals(BasicCommands.exit));
+        } while (!basicCommands.equals(BasicCommands.exit));*/
     }
 }

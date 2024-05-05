@@ -22,7 +22,7 @@ public class FileSystemOpenState implements FileSystemState {
             this.file = filePath;
             String file = fileHelper.read(filePath);
 
-            System.out.println("Successfully opened file.xml, file content: ");
+            System.out.println("Successfully opened " + filePath + " , file content: ");
             System.out.println(file);
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
@@ -36,7 +36,7 @@ public class FileSystemOpenState implements FileSystemState {
 
         this.file = null;
         fileSystem.setState(new FileSystemClosedState());
-        System.out.println("Successfully closed file.xml");
+        System.out.println("Successfully closed the current file");
 
     }
 
@@ -45,7 +45,7 @@ public class FileSystemOpenState implements FileSystemState {
         try {
             FileHelper fileHelper = new FileHelper();
             fileHelper.write(this.file, input);
-            System.out.println("Successfully saved file.xml");
+            System.out.println("Successfully saved the current file");
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
         }
@@ -61,7 +61,7 @@ public class FileSystemOpenState implements FileSystemState {
                 fileHelper.createFile(filePath);
             }
             fileHelper.write(filePath, input);
-            System.out.println("Successfully saved another file.xml");
+            System.out.println("Successfully saved the current file to another location");
         }catch(IOException e){
         System.out.println("Exception occurred: " + e);
     }
