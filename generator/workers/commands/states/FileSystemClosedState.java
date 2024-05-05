@@ -25,7 +25,7 @@ public class FileSystemClosedState implements FileSystemState {
     }
 
     @Override
-    public void saveFile(Path filePath, String input) {
+    public void saveFile(String input) {
         System.out.println("A file should be opened first");
     }
 

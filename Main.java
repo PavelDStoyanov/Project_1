@@ -15,22 +15,38 @@ public class Main {
         String choice;
         FileSystem fileSystem = new FileSystem();
         Scanner scanner = new Scanner(System.in);
-        BasicCommands basicCommands;
-
-        Path filePath = Path.of("D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\graphics.txt");
+        BasicCommands basicCommands = null;
+        String input = "Teston";
+        String filePathFolder = "D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\";
+        Path filePath;
+        //Path filePath1 = Path.of("D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\");
+        //Path filePath2 = Path.of("D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\new.txt");
 
 
         do {
             System.out.println("\nChoose a command:");
-            System.out.println("open, close, save, saveas, help, exit");
+            System.out.println("open <file>, close, save, saveas <file>, help, exit");
             System.out.print("> ");
             choice = scanner.nextLine();
-            basicCommands = BasicCommands.valueOf(choice);
+            String[] inputs = choice.split(" ");
+
+            try{
+                basicCommands = BasicCommands.valueOf(inputs[0]);
+            }catch (IllegalArgumentException e){
+                System.out.println("This command does not exist");
+                continue;
+            }
             switch (basicCommands) {
                 case open:
+                    if(inputs.length > 1){
+                    filePath = Path.of(filePathFolder + inputs[1]);
+
                     Command openFileCommand = new OpenFileCommand(fileSystem, filePath);
                     //openFileCommand.execute();
                     fileSystem.execute(openFileCommand);
+                    }else{
+                        System.out.println("Wrong input format");
+                    }
                     break;
                 case close:
                     Command closeFileCommand = new CloseFileCommand(fileSystem);
@@ -38,14 +54,21 @@ public class Main {
                     fileSystem.execute(closeFileCommand);
                     break;
                 case save:
-                    Command saveFileCommand = new SaveFileCommand(fileSystem, filePath);
+                    Command saveFileCommand = new SaveFileCommand(fileSystem, input);
                     //saveFileCommand.execute();
                     fileSystem.execute(saveFileCommand);
                     break;
                 case saveas:
-                    Command saveFileAsCommand =  new SaveFileAsCommand(fileSystem, filePath);
-                    //saveFileAsCommand.execute();
-                    fileSystem.execute(saveFileAsCommand);
+                    if(inputs.length > 1) {
+                        filePath = Path.of(filePathFolder + inputs[1]);
+                        Command saveFileAsCommand = new SaveFileAsCommand(fileSystem, filePath, input);
+                        //saveFileAsCommand.execute();
+                        fileSystem.execute(saveFileAsCommand);
+                    }
+                    else{
+                        System.out.println("Wrong input format");
+                    }
+
                     break;
                 case help:
                     Command helpCommand = new HelpCommand(fileSystem);

@@ -8,15 +8,15 @@ import java.nio.file.Path;
 
 public class SaveFileCommand implements Command {
     private FileSystem fileSystem;
-    private Path filePath;
+    private String input;
 
-    public SaveFileCommand(FileSystem fileSystem, Path filePath) {
+    public SaveFileCommand(FileSystem fileSystem, String input) {
         this.fileSystem = fileSystem;
-        this.filePath = filePath;
+        this.input = input;
     }
 
     @Override
     public void execute() {
-        this.fileSystem.getState().saveFile(filePath, "Drafton");
+        this.fileSystem.getState().saveFile(input);
     }
 }

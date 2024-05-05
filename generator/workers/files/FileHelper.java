@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 public class FileHelper implements ReadFile, WriteFile {
-    File file = new File("graphics.txt");
+    //File file = new File("graphics.txt");
     //Scanner scanner = new Scanner(file);
 
     public FileHelper() throws FileNotFoundException {}
@@ -41,6 +41,12 @@ public class FileHelper implements ReadFile, WriteFile {
     public void createDirectory(Path path) throws IOException{
         if(Files.notExists(path)){
             Files.createDirectory(path);
+        }
+    }
+
+    public void createFile(Path path) throws IOException {
+        if(Files.notExists(path)){
+            Files.createFile(path);
         }
     }
 

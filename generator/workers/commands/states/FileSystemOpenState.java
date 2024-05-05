@@ -17,7 +17,7 @@ public class FileSystemOpenState implements FileSystemState {
         try {
             FileHelper fileHelper = new FileHelper();
             if(Files.notExists(filePath)){
-                fileHelper.createDirectory(filePath);
+                fileHelper.createFile(filePath);
             }
             this.file = filePath;
             String file = fileHelper.read(filePath);
@@ -41,7 +41,7 @@ public class FileSystemOpenState implements FileSystemState {
     }
 
     @Override
-    public void saveFile(Path filePath, String input) {
+    public void saveFile(String input) {
         try {
             FileHelper fileHelper = new FileHelper();
             fileHelper.write(this.file, input);
@@ -58,7 +58,7 @@ public class FileSystemOpenState implements FileSystemState {
         try {
             FileHelper fileHelper = new FileHelper();
             if(Files.notExists(filePath)){
-                fileHelper.createDirectory(filePath);
+                fileHelper.createFile(filePath);
             }
             fileHelper.write(filePath, input);
             System.out.println("Successfully saved another file.xml");

@@ -9,14 +9,16 @@ import java.nio.file.Path;
 public class SaveFileAsCommand implements Command {
     private FileSystem fileSystem;
     private Path filePath;
+    private String input;
 
-    public SaveFileAsCommand(FileSystem fileSystem, Path filePath) {
+    public SaveFileAsCommand(FileSystem fileSystem, Path filePath,String input) {
         this.fileSystem = fileSystem;
         this.filePath = filePath;
+        this.input = input;
     }
 
     @Override
     public void execute() {
-        this.fileSystem.getState().saveFileAs(filePath,"Draf");
+        this.fileSystem.getState().saveFileAs(filePath,input);
     }
 }
