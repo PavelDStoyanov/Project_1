@@ -84,5 +84,50 @@ public class FileSystemOpenState implements FileSystemState {
         System.out.println("Exiting the program...");
     }
 
+    @Override
+    public void grayscale() {
+
+    }
+
+    @Override
+    public void monochrome() {
+
+    }
+
+    @Override
+    public void negative() {
+
+    }
+
+    @Override
+    public void rotate() {
+
+    }
+
+    @Override
+    public void undo() {
+
+    }
+
+    @Override
+    public void addImage() {
+
+    }
+
+    @Override
+    public void sessionInfo() {
+
+    }
+
+    @Override
+    public void switchSession() {
+
+    }
+
+    @Override
+    public void collage() {
+
+    }
+
 
 }

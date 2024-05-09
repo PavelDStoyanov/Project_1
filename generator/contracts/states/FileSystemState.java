@@ -11,4 +11,14 @@ public interface FileSystemState {
     void saveFileAs(Path filePath, String input);
     void help();
     void exit();
+
+    void grayscale();
+    void monochrome();
+    void negative();
+    void rotate();
+    void undo();
+    void addImage();
+    void sessionInfo();
+    void switchSession();
+    void collage();
 }

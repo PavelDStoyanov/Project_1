@@ -51,4 +51,51 @@ public class FileSystemClosedState implements FileSystemState {
     }
 
 
+
+    @Override
+    public void grayscale() {
+        System.out.println("A file should be opened first");
+    }
+
+    @Override
+    public void monochrome() {
+        System.out.println("A file should be opened first");
+    }
+
+    @Override
+    public void negative() {
+        System.out.println("A file should be opened first");
+    }
+
+    @Override
+    public void rotate() {
+        System.out.println("A file should be opened first");
+    }
+
+    @Override
+    public void undo() {
+        System.out.println("A file should be opened first");
+    }
+
+    @Override
+    public void addImage() {
+        System.out.println("A file should be opened first");
+    }
+
+    @Override
+    public void sessionInfo() {
+        System.out.println("A file should be opened first");
+    }
+
+    @Override
+    public void switchSession() {
+        System.out.println("A file should be opened first");
+    }
+
+    @Override
+    public void collage() {
+        System.out.println("A file should be opened first");
+    }
+
+
 }
