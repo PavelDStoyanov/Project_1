@@ -2,7 +2,9 @@ package bg.tu_varna.sit.b1.f22621682.project1.Project_1;
 
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.commands.Command;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.CommandType;
-import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.implementations.additional.MonochromeCommand;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.implementations.additional.*;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.implementations.basics.*;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
 
@@ -25,6 +27,9 @@ public class Main {
         Path filePath = defaultFilePath;
         Map<CommandType,Command> menu = new HashMap<>();
 
+        Session session = new Session(4);
+        Image image = new Image();
+
 
 
         do{
@@ -45,7 +50,7 @@ public class Main {
             }else{
                 filePath = defaultFilePath;
             }
-            menu.put(CommandType.open, new OpenFileCommand(fileSystem,filePath));
+            menu.put(CommandType.open, new OpenFileCommand(fileSystem, session, filePath));
             menu.put(CommandType.close, new CloseFileCommand(fileSystem));
             menu.put(CommandType.save, new SaveFileCommand(fileSystem, input));
             menu.put(CommandType.saveas, new SaveFileAsCommand(fileSystem, filePath,input));
@@ -53,14 +58,14 @@ public class Main {
             menu.put(CommandType.exit, new ExitCommand(fileSystem));
 
             menu.put(CommandType.monochrome, new MonochromeCommand(fileSystem));
-            menu.put(CommandType.grayscale, new MonochromeCommand(fileSystem));
-            menu.put(CommandType.negative, new MonochromeCommand(fileSystem));
-            menu.put(CommandType.rotate, new MonochromeCommand(fileSystem));
-            menu.put(CommandType.undo, new MonochromeCommand(fileSystem));
-            menu.put(CommandType.add, new MonochromeCommand(fileSystem));
-            menu.put(CommandType.sessioninfo, new MonochromeCommand(fileSystem));
-            menu.put(CommandType.switchsession, new MonochromeCommand(fileSystem));
-            menu.put(CommandType.collage, new MonochromeCommand(fileSystem));
+            menu.put(CommandType.grayscale, new GrayscaleCommand(fileSystem));
+            menu.put(CommandType.negative, new NegativeCommand(fileSystem));
+            menu.put(CommandType.rotate, new RotateCommand(fileSystem));
+            menu.put(CommandType.undo, new UndoCommand(fileSystem));
+            menu.put(CommandType.add, new AddImageCommand(fileSystem, image));
+            menu.put(CommandType.sessioninfo, new SessionInfoCommand(fileSystem));
+            menu.put(CommandType.switchsession, new SwitchSessionCommand(fileSystem));
+            menu.put(CommandType.collage, new CollageCommand(fileSystem));
 
 
 

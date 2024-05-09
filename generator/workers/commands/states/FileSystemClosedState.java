@@ -1,6 +1,8 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.states;
 
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states.FileSystemState;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.FileHelper;
 
@@ -12,9 +14,9 @@ import java.nio.file.Path;
 public class FileSystemClosedState implements FileSystemState {
 
     @Override
-    public void openFile(FileSystem fileSystem, Path filePath) {
+    public void openFile(FileSystem fileSystem, Session session, Path filePath) {
         FileSystemOpenState fileSystemOpenState = new FileSystemOpenState();
-        fileSystemOpenState.openFile(fileSystem,filePath);
+        fileSystemOpenState.openFile(fileSystem, session, filePath);
         fileSystem.setState(fileSystemOpenState);
     }
 
@@ -78,7 +80,7 @@ public class FileSystemClosedState implements FileSystemState {
     }
 
     @Override
-    public void addImage() {
+    public void addImage(Image image) {
         System.out.println("A file should be opened first");
     }
 

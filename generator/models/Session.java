@@ -33,4 +33,37 @@ public class Session {
             this.transformImages(element);
         }
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public List<Transformation> getTransformations() {
+        return transformations;
+    }
+
+    public void setTransformations(List<Transformation> transformations) {
+        this.transformations = transformations;
+    }
+
+    @Override
+    public String toString() {
+        return "Session{" +
+                "id=" + id +
+                ", images=" + images +
+                ", transformations=" + transformations +
+                '}';
+    }
 }

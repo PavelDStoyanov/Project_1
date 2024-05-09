@@ -1,24 +1,31 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.states;
 
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states.FileSystemState;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.FileHelper;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.*;
 
 public class FileSystemOpenState implements FileSystemState {
     private Path file;
-
+    private Session session;
+    //private Map<Integer,Session> sessionMap  = new HashMap<>();
 
     @Override
-    public void openFile(FileSystem fileSystem, Path filePath) {
+    public void openFile(FileSystem fileSystem, Session session, Path filePath) {
         try {
             FileHelper fileHelper = new FileHelper();
             if(Files.notExists(filePath)){
                 fileHelper.createFile(filePath);
             }
+
+            this.session = session;
+
             this.file = filePath;
             String file = fileHelper.read(filePath);
 
@@ -33,8 +40,10 @@ public class FileSystemOpenState implements FileSystemState {
 
     @Override
     public void closeFile(FileSystem fileSystem) {
-
         this.file = null;
+
+        this.session = null;
+
         fileSystem.setState(new FileSystemClosedState());
         System.out.println("Successfully closed the current file");
 
@@ -44,6 +53,9 @@ public class FileSystemOpenState implements FileSystemState {
     public void saveFile(String input) {
         try {
             FileHelper fileHelper = new FileHelper();
+
+            this.session.applyAllTransformations();
+
             fileHelper.write(this.file, input);
             System.out.println("Successfully saved the current file");
         }catch(IOException e){
@@ -60,6 +72,9 @@ public class FileSystemOpenState implements FileSystemState {
             if(Files.notExists(filePath)){
                 fileHelper.createFile(filePath);
             }
+
+            this.session.applyAllTransformations();
+
             fileHelper.write(filePath, input);
             System.out.println("Successfully saved the current file to another location");
         }catch(IOException e){
@@ -86,37 +101,37 @@ public class FileSystemOpenState implements FileSystemState {
 
     @Override
     public void grayscale() {
-
+        //this.session.addTransformation();
     }
 
     @Override
     public void monochrome() {
-
+        //this.session.addTransformation();
     }
 
     @Override
     public void negative() {
-
+        //this.session.addTransformation();
     }
 
     @Override
     public void rotate() {
-
+        //this.session.addTransformation();
     }
 
     @Override
     public void undo() {
-
+        //this.session.addTransformation();
     }
 
     @Override
-    public void addImage() {
-
+    public void addImage(Image image) {
+        this.session.addImage(image);
     }
 
     @Override
     public void sessionInfo() {
-
+        this.session.toString();
     }
 
     @Override

@@ -1,11 +1,13 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states;
 
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
 
 import java.nio.file.Path;
 
 public interface FileSystemState {
-    void openFile(FileSystem fileSystem, Path filePath);
+    void openFile(FileSystem fileSystem, Session session, Path filePath);
     void closeFile(FileSystem fileSystem);
     void saveFile(String input);
     void saveFileAs(Path filePath, String input);
@@ -17,7 +19,7 @@ public interface FileSystemState {
     void negative();
     void rotate();
     void undo();
-    void addImage();
+    void addImage(Image image);
     void sessionInfo();
     void switchSession();
     void collage();
