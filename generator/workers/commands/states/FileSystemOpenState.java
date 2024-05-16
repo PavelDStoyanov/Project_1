@@ -121,7 +121,7 @@ public class FileSystemOpenState implements FileSystemState {
 
     @Override
     public void undo() {
-        //this.session.addTransformation();
+        this.session.removeLastTransformation();
     }
 
     @Override

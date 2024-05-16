@@ -22,8 +22,13 @@ public class Session {
         images.add(image);
     }
 
+
     public void addTransformation(Transformation transformation){
         transformations.add(transformation);
+    }
+
+    public void removeLastTransformation(){
+        transformations.remove(transformations.size() - 1);
     }
 
     public void transformImages(Transformation transformation){
