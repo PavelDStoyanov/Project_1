@@ -1,16 +1,20 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models;
 
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations.Transformation;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Session {
     private int id;
-    private List<Image> images;
+    private Set<Image> images;
     private List<Transformation> transformations;
 
     public Session(int id) {
         this.id = id;
-        this.images = new ArrayList();
+        this.images = new HashSet<>();
         this.transformations = new ArrayList();
     }
 
@@ -42,11 +46,11 @@ public class Session {
         this.id = id;
     }
 
-    public List<Image> getImages() {
+    public Set<Image> getImages() {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(Set<Image> images) {
         this.images = images;
     }
 
