@@ -14,9 +14,9 @@ import java.nio.file.Path;
 public class FileSystemClosedState implements FileSystemState {
 
     @Override
-    public void openFile(FileSystem fileSystem, Session session, Path filePath) {
+    public void openFile(FileSystem fileSystem, Path filePath) {
         FileSystemOpenState fileSystemOpenState = new FileSystemOpenState();
-        fileSystemOpenState.openFile(fileSystem, session, filePath);
+        fileSystemOpenState.openFile(fileSystem, filePath);
         fileSystem.setState(fileSystemOpenState);
     }
 

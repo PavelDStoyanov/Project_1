@@ -15,20 +15,27 @@ public class FileSystemOpenState implements FileSystemState {
     private Path file;
     private Session session;
     private Map<Integer,Session> sessionMap  = new HashMap<>();
+    private Set<Integer> sessionIds = new HashSet<>();
 
     @Override
-    public void openFile(FileSystem fileSystem, Session session, Path filePath) {
+    public void openFile(FileSystem fileSystem, Path filePath) {
         try {
             FileHelper fileHelper = new FileHelper();
             if(Files.notExists(filePath)){
                 fileHelper.createFile(filePath);
             }
 
-            if (!sessionMap.containsKey(session.getId())) {
-                sessionMap.put(session.getId(), session);
-            }
+            //session.addImage(image);
 
-            this.session = session;
+            /*creates new session with unique ID*/
+            sessionIds.add(this.sessionIds.size());
+            this.session = new Session(sessionIds.size());
+            //System.out.println("The session id is: " + sessionIds.size());
+
+            /*puts the new session into the map of sessions*/
+            if (!sessionMap.containsKey(this.session.getId())) {
+                sessionMap.put(session.getId(), this.session);
+            }
 
             this.file = filePath;
             String file = fileHelper.read(filePath);
@@ -135,7 +142,7 @@ public class FileSystemOpenState implements FileSystemState {
 
     @Override
     public void sessionInfo() {
-        this.session.toString();
+        System.out.println(this.session.toString());
     }
 
     @Override
@@ -145,7 +152,7 @@ public class FileSystemOpenState implements FileSystemState {
         }
         else {
             this.session = sessionMap.get(sessionId);
-            System.out.println("The current session is: " + sessionMap.get(sessionId));
+            //System.out.println("The current session is: " + sessionMap.get(sessionId));
         }
     }
 

@@ -7,7 +7,7 @@ import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.command
 import java.nio.file.Path;
 
 public interface FileSystemState {
-    void openFile(FileSystem fileSystem, Session session, Path filePath);
+    void openFile(FileSystem fileSystem, Path filePath);
     void closeFile(FileSystem fileSystem);
     void saveFile(String input);
     void saveFileAs(Path filePath, String input);

@@ -10,16 +10,14 @@ import java.nio.file.Path;
 public class OpenFileCommand implements Command {
     private FileSystem fileSystem;
     private Path filePath;
-    private Session session;
 
-    public OpenFileCommand(FileSystem fileSystem, Session session, Path filePath) {
+    public OpenFileCommand(FileSystem fileSystem, Path filePath) {
         this.fileSystem = fileSystem;
         this.filePath = filePath;
-        this.session = session;
     }
 
     @Override
     public void execute() {
-        this.fileSystem.getState().openFile(fileSystem, session, filePath);
+        this.fileSystem.getState().openFile(fileSystem, filePath);
     }
 }

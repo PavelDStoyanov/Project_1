@@ -27,7 +27,7 @@ public class Main {
         Path filePath = defaultFilePath;
         Map<CommandType,Command> menu = new HashMap<>();
 
-        Session session = new Session(4);
+       //Session session = new Session(4);/*should be changed*/
         Image image = new Image();
 
 
@@ -50,7 +50,7 @@ public class Main {
             }else{
                 filePath = defaultFilePath;
             }
-            menu.put(CommandType.open, new OpenFileCommand(fileSystem, session, filePath));
+            menu.put(CommandType.open, new OpenFileCommand(fileSystem, filePath));
             menu.put(CommandType.close, new CloseFileCommand(fileSystem));
             menu.put(CommandType.save, new SaveFileCommand(fileSystem, input));
             menu.put(CommandType.saveas, new SaveFileAsCommand(fileSystem, filePath,input));
@@ -64,7 +64,7 @@ public class Main {
             menu.put(CommandType.undo, new UndoCommand(fileSystem));
             menu.put(CommandType.add, new AddImageCommand(fileSystem, image));
             menu.put(CommandType.sessioninfo, new SessionInfoCommand(fileSystem));
-            menu.put(CommandType.switchsession, new SwitchSessionCommand(fileSystem));
+            menu.put(CommandType.switchsession, new SwitchSessionCommand(fileSystem, 1 /*should be changed*/));
             menu.put(CommandType.collage, new CollageCommand(fileSystem));
 
 
