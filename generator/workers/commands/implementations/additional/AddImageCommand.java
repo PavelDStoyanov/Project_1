@@ -4,17 +4,19 @@ import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.comma
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
 
+import java.nio.file.Path;
+
 public class AddImageCommand implements Command{
     private FileSystem fileSystem;
-    private Image image;
+    private Path filepath;
 
-    public AddImageCommand(FileSystem fileSystem, Image image) {
+    public AddImageCommand(FileSystem fileSystem, Path filepath) {
         this.fileSystem = fileSystem;
-        this.image = image;
+        this.filepath = filepath;
     }
 
     @Override
     public void execute() {
-        this.fileSystem.getState().addImage(image);
+        this.fileSystem.getState().addImage(filepath);
     }
 }

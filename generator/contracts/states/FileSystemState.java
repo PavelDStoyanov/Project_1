@@ -19,7 +19,7 @@ public interface FileSystemState {
     void negative();
     void rotate();
     void undo();
-    void addImage(Image image);
+    void addImage(Path filepath);
     void sessionInfo();
     void switchSession(int sessionId);
     void collage();

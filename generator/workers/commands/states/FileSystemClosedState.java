@@ -80,7 +80,7 @@ public class FileSystemClosedState implements FileSystemState {
     }
 
     @Override
-    public void addImage(Image image) {
+    public void addImage(Path filepath) {
         System.out.println("A file should be opened first");
     }
 

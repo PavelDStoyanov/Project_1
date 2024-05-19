@@ -15,27 +15,36 @@ public class FileSystemOpenState implements FileSystemState {
     private Path file;
     private Session session;
     private Map<Integer,Session> sessionMap  = new HashMap<>();
-    private Set<Integer> sessionIds = new HashSet<>();
+    //private Set<Integer> sessionIds = new HashSet<>();
+    int count = 1;
 
     @Override
     public void openFile(FileSystem fileSystem, Path filePath) {
+        /*iterates all images*/
+        //for(Path path : filePaths) {
         try {
             FileHelper fileHelper = new FileHelper();
             if(Files.notExists(filePath)){
                 fileHelper.createFile(filePath);
             }
 
-            //session.addImage(image);
+
 
             /*creates new session with unique ID*/
-            sessionIds.add(this.sessionIds.size());
-            this.session = new Session(sessionIds.size());
-            //System.out.println("The session id is: " + sessionIds.size());
+            /*sessionIds.add(this.sessionIds.size());
+            this.session = new Session(sessionIds.size());*/
+            System.out.println("Session with ID " + count /*sessionIds.size()*/ + " started");
+            count++;
 
             /*puts the new session into the map of sessions*/
             if (!sessionMap.containsKey(this.session.getId())) {
                 sessionMap.put(session.getId(), this.session);
             }
+
+            /*adds an image to the current session*/
+            Image image = new Image(filePath);
+
+            this.session.addImage(image);
 
             this.file = filePath;
             String file = fileHelper.read(filePath);
@@ -136,13 +145,17 @@ public class FileSystemOpenState implements FileSystemState {
     }
 
     @Override
-    public void addImage(Image image) {
+    public void addImage(Path filepath) {
+        Image image = new Image(filepath);
         this.session.addImage(image);
     }
 
     @Override
     public void sessionInfo() {
-        System.out.println(this.session.toString());
+        //System.out.println(this.session.toString());
+        System.out.println("Session ID: " + this.session.getId());
+        System.out.println("Images in the session: " + this.session.getImages());
+        System.out.println("Pending transformations: " + this.session.getTransformations());
     }
 
     @Override
@@ -152,7 +165,10 @@ public class FileSystemOpenState implements FileSystemState {
         }
         else {
             this.session = sessionMap.get(sessionId);
-            //System.out.println("The current session is: " + sessionMap.get(sessionId));
+            //System.out.println("");
+            System.out.println("You switched to a session with ID: " + sessionMap.get(sessionId).getId());
+            System.out.println("Images in the session: " + this.session.getImages());
+            System.out.println("Pending transformations: " + this.session.getTransformations());
         }
     }
 

@@ -28,7 +28,7 @@ public class Main {
         Map<CommandType,Command> menu = new HashMap<>();
 
        //Session session = new Session(4);/*should be changed*/
-        Image image = new Image();
+        Image image = new Image(defaultFilePath);/*should be changed*/
 
 
 
@@ -62,7 +62,7 @@ public class Main {
             menu.put(CommandType.negative, new NegativeCommand(fileSystem));
             menu.put(CommandType.rotate, new RotateCommand(fileSystem));
             menu.put(CommandType.undo, new UndoCommand(fileSystem));
-            menu.put(CommandType.add, new AddImageCommand(fileSystem, image));
+            menu.put(CommandType.add, new AddImageCommand(fileSystem, filePath));
             menu.put(CommandType.sessioninfo, new SessionInfoCommand(fileSystem));
             menu.put(CommandType.switchsession, new SwitchSessionCommand(fileSystem, 1 /*should be changed*/));
             menu.put(CommandType.collage, new CollageCommand(fileSystem));
