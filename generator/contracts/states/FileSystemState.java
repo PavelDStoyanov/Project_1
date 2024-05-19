@@ -21,6 +21,6 @@ public interface FileSystemState {
     void undo();
     void addImage(Image image);
     void sessionInfo();
-    void switchSession();
+    void switchSession(int sessionId);
     void collage();
 }

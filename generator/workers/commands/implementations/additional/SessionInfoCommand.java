@@ -6,6 +6,7 @@ import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.command
 public class SessionInfoCommand implements Command {
     private FileSystem fileSystem;
 
+
     public SessionInfoCommand(FileSystem fileSystem) {
         this.fileSystem = fileSystem;
     }

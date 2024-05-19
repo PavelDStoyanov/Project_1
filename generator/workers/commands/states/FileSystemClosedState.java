@@ -90,7 +90,7 @@ public class FileSystemClosedState implements FileSystemState {
     }
 
     @Override
-    public void switchSession() {
+    public void switchSession(int sessionId) {
         System.out.println("A file should be opened first");
     }
 

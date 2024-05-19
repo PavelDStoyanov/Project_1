@@ -14,7 +14,7 @@ import java.util.*;
 public class FileSystemOpenState implements FileSystemState {
     private Path file;
     private Session session;
-    //private Map<Integer,Session> sessionMap  = new HashMap<>();
+    private Map<Integer,Session> sessionMap  = new HashMap<>();
 
     @Override
     public void openFile(FileSystem fileSystem, Session session, Path filePath) {
@@ -22,6 +22,10 @@ public class FileSystemOpenState implements FileSystemState {
             FileHelper fileHelper = new FileHelper();
             if(Files.notExists(filePath)){
                 fileHelper.createFile(filePath);
+            }
+
+            if (!sessionMap.containsKey(session.getId())) {
+                sessionMap.put(session.getId(), session);
             }
 
             this.session = session;
@@ -135,8 +139,14 @@ public class FileSystemOpenState implements FileSystemState {
     }
 
     @Override
-    public void switchSession() {
-
+    public void switchSession(int sessionId) {
+        if (!sessionMap.containsKey(session.getId())) {
+            System.out.println("There is no such session");
+        }
+        else {
+            this.session = sessionMap.get(sessionId);
+            System.out.println("The current session is: " + sessionMap.get(sessionId));
+        }
     }
 
     @Override
