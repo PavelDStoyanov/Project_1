@@ -5,7 +5,9 @@ import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.FileHelper;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.ImageHelper;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,6 +26,7 @@ public class FileSystemOpenState implements FileSystemState {
         //for(Path path : filePaths) {
         try {
             FileHelper fileHelper = new FileHelper();
+            ImageHelper imageHelper = new ImageHelper();
             if(Files.notExists(filePath)){
                 fileHelper.createFile(filePath);
             }
@@ -34,6 +37,7 @@ public class FileSystemOpenState implements FileSystemState {
             /*sessionIds.add(this.sessionIds.size());
             this.session = new Session(sessionIds.size());*/
             System.out.println("Session with ID " + count /*sessionIds.size()*/ + " started");
+            this.session = new Session(count);
             count++;
 
             /*puts the new session into the map of sessions*/
@@ -42,8 +46,8 @@ public class FileSystemOpenState implements FileSystemState {
             }
 
             /*adds an image to the current session*/
-            Image image = new Image(filePath);
-
+            BufferedImage bufferedImage =  null;//imageHelper.read(filePath);
+            Image image = new Image(bufferedImage);
             this.session.addImage(image);
 
             this.file = filePath;
@@ -146,7 +150,14 @@ public class FileSystemOpenState implements FileSystemState {
 
     @Override
     public void addImage(Path filepath) {
-        Image image = new Image(filepath);
+        BufferedImage bufferedImage = null;
+        try {
+            ImageHelper imageHelper = new ImageHelper();
+            bufferedImage = imageHelper.read(filepath);
+        }catch(IOException e){
+            System.out.println("Exception occurred: " + e);
+        }
+        Image image = new Image(bufferedImage);
         this.session.addImage(image);
     }
 
@@ -166,7 +177,7 @@ public class FileSystemOpenState implements FileSystemState {
         else {
             this.session = sessionMap.get(sessionId);
             //System.out.println("");
-            System.out.println("You switched to a session with ID: " + sessionMap.get(sessionId).getId());
+            System.out.println("You switched to a session with ID: " + this.sessionMap.get(sessionId).getId());
             System.out.println("Images in the session: " + this.session.getImages());
             System.out.println("Pending transformations: " + this.session.getTransformations());
         }

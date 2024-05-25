@@ -3,9 +3,11 @@ package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.files.ReadFile;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.files.WriteFile;
 
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
@@ -19,6 +21,7 @@ public class FileHelper implements ReadFile, WriteFile {
     @Override
     public void write(Path filePath, String data) throws IOException {
         try {
+
             Files.write(filePath, data.getBytes());
             //Files.write(file.toPath(), data.getBytes());
         } catch (IOException e) {
@@ -30,6 +33,7 @@ public class FileHelper implements ReadFile, WriteFile {
     @Override
     public String read(Path filePath) throws IOException{
         try {
+            //ImageIO.read((InputStream) filePath);
             return Files.readString(filePath);
         } catch (IOException e) {
             e.printStackTrace();

@@ -28,7 +28,7 @@ public class Main {
         Map<CommandType,Command> menu = new HashMap<>();
 
        //Session session = new Session(4);/*should be changed*/
-        Image image = new Image(defaultFilePath);/*should be changed*/
+        //Image image = new Image(defaultFilePath);/*should be changed*/
 
 
 
