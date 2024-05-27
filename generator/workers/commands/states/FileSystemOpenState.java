@@ -46,14 +46,15 @@ public class FileSystemOpenState implements FileSystemState {
             }
 
             /*adds an image to the current session*/
-            BufferedImage bufferedImage =  null;//imageHelper.read(filePath);
-            Image image = new Image(bufferedImage);
+            BufferedImage bufferedImage = imageHelper.read(filePath);
+            Image image = new Image(bufferedImage,filePath.getFileName().toString());
+            //System.out.println(image.getFileName());
             this.session.addImage(image);
 
             this.file = filePath;
             String file = fileHelper.read(filePath);
 
-            System.out.println("Successfully opened " + filePath + " , file content: ");
+            System.out.println("Successfully opened " + filePath.getFileName() + ", file content: ");
             System.out.println(file);
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
@@ -157,7 +158,7 @@ public class FileSystemOpenState implements FileSystemState {
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
         }
-        Image image = new Image(bufferedImage);
+        Image image = new Image(bufferedImage, filepath.toFile().toString());
         this.session.addImage(image);
     }
 

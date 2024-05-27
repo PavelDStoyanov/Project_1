@@ -16,7 +16,8 @@ import java.nio.file.Path;
 public class ImageHelper {
     public BufferedImage read(Path filePath) throws IOException {
         try {
-            return ImageIO.read(new File(filePath.getFileName().toString()));
+            return ImageIO.read(filePath.toFile());
+            //return ImageIO.read(new File(filePath.getFileName().toString()));
             //return ImageIO.read(new File("tester.png"));
             //return ImageIO.read((InputStream) filePath);
             //return Files.readString(filePath);
@@ -28,8 +29,8 @@ public class ImageHelper {
 
     public void write(Path filePath, BufferedImage bufferedImage) throws IOException {
         try {
-
-            ImageIO.write(bufferedImage, "png", (ImageOutputStream) filePath);
+            ImageIO.write(bufferedImage, "png", filePath.toFile());
+            //ImageIO.write(bufferedImage, "png", (ImageOutputStream) filePath);
             //Files.write(file.toPath(), data.getBytes());
         } catch (IOException e) {
             e.printStackTrace();

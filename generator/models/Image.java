@@ -6,10 +6,12 @@ import java.awt.image.BufferedImage;
 import java.nio.file.Path;
 
 public class Image {
+    private String fileName;
     private BufferedImage bufferedImage;
 
-    public Image(BufferedImage bufferedImage) {
+    public Image(BufferedImage bufferedImage, String fileName) {
         this.bufferedImage = bufferedImage;
+        this.fileName = fileName;
     }
 
     public void applyTransformation(Transformation transformation){
@@ -23,6 +25,10 @@ public class Image {
 
     public void setBufferedImage(BufferedImage bufferedImage) {
         this.bufferedImage = bufferedImage;
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 
     @Override
