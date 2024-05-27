@@ -6,16 +6,16 @@ import java.awt.image.BufferedImage;
 import java.nio.file.Path;
 
 public class Image {
-    private String fileName;
+    private Path filePath;
     private BufferedImage bufferedImage;
 
-    public Image(BufferedImage bufferedImage, String fileName) {
+    public Image(BufferedImage bufferedImage, Path filePath) {
         this.bufferedImage = bufferedImage;
-        this.fileName = fileName;
+        this.filePath = filePath;
     }
 
     public void applyTransformation(Transformation transformation){
-        transformation.transform(this.bufferedImage);
+        this.bufferedImage = transformation.transform(this.bufferedImage);
     }
 
 
@@ -28,11 +28,15 @@ public class Image {
     }
 
     public String getFileName() {
-        return fileName;
+        return filePath.getFileName().toString();
+    }
+
+    public Path getFilePath() {
+        return filePath;
     }
 
     @Override
     public String toString() {
-        return "" + fileName;
+        return "" + filePath.getFileName();
     }
 }

@@ -54,10 +54,10 @@ public class FileSystemOpenState implements FileSystemState {
             this.session.addImage(image);*/
 
             this.file = filePath;
-            String file = fileHelper.read(filePath);
+            //String file = fileHelper.read(filePath);
 
             //System.out.println("Successfully opened " + filePath.getFileName() + ", file content: ");
-            System.out.println(file);
+            //System.out.println(file);
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
         }
@@ -79,13 +79,18 @@ public class FileSystemOpenState implements FileSystemState {
     @Override
     public void saveFile(String input) {
         try {
-            FileHelper fileHelper = new FileHelper();
+            //FileHelper fileHelper = new FileHelper();
+            ImageHelper imageHelper = new ImageHelper();
 
             this.session.applyAllTransformations();
 
-            fileHelper.write(this.file, input);
+            for(Image image : this.session.getImages()){
+                imageHelper.write(image.getFilePath(),image.getBufferedImage());
+            }
+
+            //fileHelper.write(this.file, input);
             System.out.println("Successfully saved the current file");
-        }catch(IOException e){
+        }catch(Exception e){
             System.out.println("Exception occurred: " + e);
         }
 
@@ -103,7 +108,7 @@ public class FileSystemOpenState implements FileSystemState {
             this.session.applyAllTransformations();
 
             fileHelper.write(filePath, input);
-            System.out.println("Successfully saved the current file to another location");
+            System.out.println("Successfully saved the current file to another location: \"" + filePath.getFileName() + "\"");
         }catch(IOException e){
         System.out.println("Exception occurred: " + e);
     }
@@ -165,7 +170,7 @@ public class FileSystemOpenState implements FileSystemState {
             ImageHelper imageHelper = new ImageHelper();
             bufferedImage = imageHelper.read(filepath);
 
-            Image image = new Image(bufferedImage, filepath.getFileName().toString());
+            Image image = new Image(bufferedImage, filepath);
             this.session.addImage(image);
             System.out.println("Image \"" + filepath.getFileName() + "\" added");
         }catch(IOException e){
