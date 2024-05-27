@@ -15,8 +15,16 @@ import java.nio.file.Path;
 
 public class ImageHelper {
     public BufferedImage read(Path filePath) throws IOException {
+
         try {
-            return ImageIO.read(filePath.toFile());
+            //BufferedImage bufferedImage = null;
+            BufferedImage bufferedImage = ImageIO.read(new File(filePath.toString()));
+             //BufferedImage bufferedImage = ImageIO.read(filePath.toFile());
+            if (bufferedImage == null) {
+                System.out.println("Buffered image is null");
+                System.out.println(filePath.toFile());
+            }
+            return bufferedImage;
             //return ImageIO.read(new File(filePath.getFileName().toString()));
             //return ImageIO.read(new File("tester.png"));
             //return ImageIO.read((InputStream) filePath);

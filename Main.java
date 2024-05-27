@@ -26,6 +26,7 @@ public class Main {
         //Path filePath2 = Path.of("D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\new.txt");
         Path filePath = defaultFilePath;
         Map<CommandType,Command> menu = new HashMap<>();
+        //System.out.println(defaultFilePath.toFile());
 
        //Session session = new Session(4);/*should be changed*/
         //Image image = new Image(defaultFilePath);/*should be changed*/

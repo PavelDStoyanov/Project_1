@@ -101,15 +101,18 @@ public class FileSystemOpenState implements FileSystemState {
     public void saveFileAs(Path filePath, String input) {
         try {
             FileHelper fileHelper = new FileHelper();
+            ImageHelper imageHelper = new ImageHelper();
+
             if(Files.notExists(filePath)){
                 fileHelper.createFile(filePath);
             }
 
             this.session.applyAllTransformations();
-
-            fileHelper.write(filePath, input);
+            imageHelper.write(filePath,this.session.getImages().stream().findFirst().get().getBufferedImage());
+            //System.out.println(this.session.getImages().stream().findFirst().get());
+            //fileHelper.write(filePath, input);
             System.out.println("Successfully saved the current file to another location: \"" + filePath.getFileName() + "\"");
-        }catch(IOException e){
+        }catch(Exception e){
         System.out.println("Exception occurred: " + e);
     }
 
@@ -165,14 +168,17 @@ public class FileSystemOpenState implements FileSystemState {
 
     @Override
     public void addImage(Path filepath) {
-        BufferedImage bufferedImage = null;
+
         try {
+            BufferedImage bufferedImage;
             ImageHelper imageHelper = new ImageHelper();
             bufferedImage = imageHelper.read(filepath);
+            //if (bufferedImage != null){
+                Image image = new Image(bufferedImage, filepath);
+                this.session.addImage(image);
+                System.out.println("Image \"" + filepath.getFileName() + "\" added");
+            //}
 
-            Image image = new Image(bufferedImage, filepath);
-            this.session.addImage(image);
-            System.out.println("Image \"" + filepath.getFileName() + "\" added");
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
         }
