@@ -3,6 +3,8 @@ package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.comman
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states.FileSystemState;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations.GrayscaleTransformation;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations.Transformation;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.FileHelper;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.ImageHelper;
@@ -46,15 +48,16 @@ public class FileSystemOpenState implements FileSystemState {
             }
 
             /*adds an image to the current session*/
-            BufferedImage bufferedImage = imageHelper.read(filePath);
+            this.addImage(filePath);
+            /*BufferedImage bufferedImage = imageHelper.read(filePath);
             Image image = new Image(bufferedImage,filePath.getFileName().toString());
             //System.out.println(image.getFileName());
-            this.session.addImage(image);
+            this.session.addImage(image);*/
 
             this.file = filePath;
             String file = fileHelper.read(filePath);
 
-            System.out.println("Successfully opened " + filePath.getFileName() + ", file content: ");
+            //System.out.println("Successfully opened " + filePath.getFileName() + ", file content: ");
             System.out.println(file);
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
@@ -126,7 +129,8 @@ public class FileSystemOpenState implements FileSystemState {
 
     @Override
     public void grayscale() {
-        //this.session.addTransformation();
+        Transformation transformation = new GrayscaleTransformation();
+        this.session.addTransformation(transformation);
     }
 
     @Override
@@ -155,11 +159,15 @@ public class FileSystemOpenState implements FileSystemState {
         try {
             ImageHelper imageHelper = new ImageHelper();
             bufferedImage = imageHelper.read(filepath);
+
+            Image image = new Image(bufferedImage, filepath.getFileName().toString());
+            this.session.addImage(image);
+            System.out.println("Image \"" + filepath.getFileName() + "\" added");
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
         }
-        Image image = new Image(bufferedImage, filepath.toFile().toString());
-        this.session.addImage(image);
+//        Image image = new Image(bufferedImage, filepath.toFile().toString());
+//        this.session.addImage(image);
     }
 
     @Override

@@ -33,8 +33,6 @@ public class Image {
 
     @Override
     public String toString() {
-        return "Image{" +
-                "bufferedImage=" + bufferedImage +
-                '}';
+        return "" + fileName;
     }
 }
