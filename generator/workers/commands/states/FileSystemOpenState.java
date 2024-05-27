@@ -3,8 +3,7 @@ package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.comman
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states.FileSystemState;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
-import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations.GrayscaleTransformation;
-import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations.Transformation;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations.*;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.FileHelper;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files.ImageHelper;
@@ -135,16 +134,22 @@ public class FileSystemOpenState implements FileSystemState {
 
     @Override
     public void monochrome() {
+        Transformation transformation = new MonochromeTransformation();
+        this.session.addTransformation(transformation);
         //this.session.addTransformation();
     }
 
     @Override
     public void negative() {
+        Transformation transformation = new NegativeTransformation();
+        this.session.addTransformation(transformation);
         //this.session.addTransformation();
     }
 
     @Override
     public void rotate() {
+        Transformation transformation = new RotateTransformation();
+        this.session.addTransformation(transformation);
         //this.session.addTransformation();
     }
 
