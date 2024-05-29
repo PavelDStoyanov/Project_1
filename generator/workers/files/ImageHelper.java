@@ -3,6 +3,7 @@ package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.files;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.files.ReadFile;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.files.WriteFile;
 
+
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
@@ -19,6 +20,8 @@ public class ImageHelper {
         try {
             //BufferedImage bufferedImage = null;
             BufferedImage bufferedImage = ImageIO.read(new File(filePath.toString()));
+
+
              //BufferedImage bufferedImage = ImageIO.read(filePath.toFile());
             if (bufferedImage == null) {
                 System.out.println("Buffered image is null");

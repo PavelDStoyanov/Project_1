@@ -7,6 +7,7 @@ import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
 
+
 public class GrayscaleTransformation extends Transformation{
     public GrayscaleTransformation() {
         super.setTransformationType(TransformationType.grayscale);
@@ -14,9 +15,11 @@ public class GrayscaleTransformation extends Transformation{
 
     @Override
     public BufferedImage transform(BufferedImage image) {
+        //int x = BufferedImage.TYPE_BYTE_GRAY;
         ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
         ColorConvertOp op = new ColorConvertOp(cs, null);
         BufferedImage grayscaleImage = op.filter(image, null);
         return grayscaleImage;
+
     }
 }

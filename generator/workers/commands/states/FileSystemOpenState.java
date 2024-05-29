@@ -54,10 +54,71 @@ public class FileSystemOpenState implements FileSystemState {
             this.session.addImage(image);*/
 
             this.file = filePath;
-            //String file = fileHelper.read(filePath);
+
+            String file = fileHelper.read(filePath);
+            //System.out.println(file);
+
+
+            int x, y, z = 0;
+
+            //String[] inputs = file.split(" ");
+            String[] fileLines = file.split("\r\n");
+
+            //String dimensions = file.substring(0,3);
+            String image = file.substring(5,file.length());
+            String[] imageLines = image.split("\r\n");
+            //String[] imageArray = image.split(" ");
+
+            //int[] intImageArray = new int[imageArray.length];
+            //String[] dimensionsArray = dimensions.split(" ");
+            String[] dimensionsArray = fileLines[0].split(" ");
+            //System.out.println(image);
+//            for(int i = 0; i < fileLines.length; i++){
+//                intImageArray[i] = Integer.parseInt(imageArray[i]);
+//                System.out.println(intImageArray[i]);
+//
+//            }
+            //System.out.println(dimensions);
+            x = Integer.parseInt(dimensionsArray[0]);
+            y = Integer.parseInt(dimensionsArray[1]);
+            System.out.println(x);
+            System.out.println(y);
+            String[][] stringMatrix = new String[y][x];
+            int[][] intMatrix = new int[y][x];
+
+           for (int i = 0; i < y; i++) {
+                // length returns number of rows
+                String[] line = imageLines[i].split(" ");
+                z = 0;
+                //System.out.print("row " + i + " : ");
+                for (int j = 0; j < x; j++) {
+
+                    // here length returns # of columns corresponding to current row
+                    stringMatrix[i][j] = line[z];
+                    z++;
+                    intMatrix[i][j] = Integer.parseInt(stringMatrix[i][j]);
+                    //System.out.print("col " + j + "  ");
+                }
+            }
+
+            //y = Integer.parseInt(inputs[1]);
+            //System.out.println(x);
+            //System.out.println(y);
+            //x =Integer.valueOf(inputs[0]);
+            //y =Integer.valueOf(inputs[1]);
+//            for(int i = 0; i < 2; i++){
+//
+//            }
+
+//            for(int i = 0; i < inputs.length; i++){
+//                System.out.println(inputs[i]);
+//            }
+
+
+
 
             //System.out.println("Successfully opened " + filePath.getFileName() + ", file content: ");
-            //System.out.println(file);
+
         }catch(IOException e){
             System.out.println("Exception occurred: " + e);
         }
@@ -138,6 +199,8 @@ public class FileSystemOpenState implements FileSystemState {
     public void grayscale() {
         Transformation transformation = new GrayscaleTransformation();
         this.session.addTransformation(transformation);
+
+
     }
 
     @Override
