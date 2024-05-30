@@ -12,6 +12,7 @@ public class MonochromeTransformation extends Transformation{
 
     @Override
     public BufferedImage transform(BufferedImage image) {
+        
         return null;
     }
 }

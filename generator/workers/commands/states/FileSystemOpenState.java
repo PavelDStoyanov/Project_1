@@ -55,11 +55,11 @@ public class FileSystemOpenState implements FileSystemState {
 
             this.file = filePath;
 
-            String file = fileHelper.read(filePath);
+            /*String file = fileHelper.read(filePath);
             //System.out.println(file);
+            Image image = new Image(bufferedImage,filePath,file);*/
 
-
-            int x, y, z = 0;
+            /*int x, y, z = 0;
 
             //String[] inputs = file.split(" ");
             String[] fileLines = file.split("\r\n");
@@ -99,7 +99,7 @@ public class FileSystemOpenState implements FileSystemState {
                     intMatrix[i][j] = Integer.parseInt(stringMatrix[i][j]);
                     //System.out.print("col " + j + "  ");
                 }
-            }
+            }*/
 
             //y = Integer.parseInt(inputs[1]);
             //System.out.println(x);
@@ -236,10 +236,26 @@ public class FileSystemOpenState implements FileSystemState {
             BufferedImage bufferedImage;
             ImageHelper imageHelper = new ImageHelper();
             bufferedImage = imageHelper.read(filepath);
+
+            FileHelper fileHelper = new FileHelper();
+            String file = fileHelper.read(filepath);
+            Image image = new Image(bufferedImage,filepath,file);
+//            for (int i = 0; i < 9; i++) {
+//                // length returns number of rows
+//
+//                System.out.print("row " + i + " : ");
+//                for (int j = 0; j < 6; j++) {
+//
+//                    // here length returns # of columns corresponding to current row
+//
+//                    System.out.println("col " + j + ": " + image.getIntMatrix()[i][j]);
+//                }
+//            }
             //if (bufferedImage != null){
-                Image image = new Image(bufferedImage, filepath);
-                this.session.addImage(image);
-                System.out.println("Image \"" + filepath.getFileName() + "\" added");
+
+                //Image image = new Image(bufferedImage, filepath);
+            this.session.addImage(image);
+            System.out.println("Image \"" + filepath.getFileName() + "\" added");
             //}
 
         }catch(IOException e){
