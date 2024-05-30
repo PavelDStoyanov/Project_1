@@ -10,18 +10,21 @@ public class Image {
     private BufferedImage bufferedImage;
     private int[][] intMatrix;
     private String[][] stringMatrix;
+    private String fileContent;
     private int x;
     private int y;
 
 
 
-    public Image(BufferedImage bufferedImage, Path filePath, String file) {
+    public Image(BufferedImage bufferedImage, Path filePath, String fileContent) {
         this.bufferedImage = bufferedImage;
         this.filePath = filePath;
         this.x = 0;
         this.y = 0;
-        this.intMatrix = this.createMatrixFromAnImage(file);
+        this.intMatrix = this.createMatrixFromAnImage(fileContent);
         this.createStringMatrixFromIntMatrix();
+        this.fileContent = fileContent;
+        //this.createStringFromStringMatrix();
 
     }
 
@@ -73,9 +76,29 @@ public class Image {
 
     }
 
+    public void createStringFromStringMatrix(){
+        String fileContent = "";
+        fileContent = fileContent + this.x + " " + this.y + "\r\n" ;
+        for (int i = 0; i < y; i++) {
+
+            for (int j = 0; j < x; j++) {
+                fileContent = fileContent + this.stringMatrix[i][j] + " ";
+                stringMatrix[i][j] = String.valueOf(intMatrix[i][j]);
+                //intMatrix[i][j] = Integer.parseInt(stringMatrix[i][j]);
+            }
+            fileContent = fileContent + "\r\n";
+        }
+        this.fileContent = fileContent;
+    }
+
     public void setMatrixElement(int i, int j, int newValue){
         this.intMatrix[i][j] = newValue;
     }
+
+
+
+
+
 
     public String[][] getStringMatrix() {
         return stringMatrix;
@@ -87,6 +110,10 @@ public class Image {
 
     public int[][] getIntMatrix() {
         return intMatrix;
+    }
+
+    public String getFileContent() {
+        return fileContent;
     }
 
     public void setIntMatrix(int[][] intMatrix) {

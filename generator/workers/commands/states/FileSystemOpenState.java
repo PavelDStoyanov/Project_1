@@ -259,6 +259,7 @@ public class FileSystemOpenState implements FileSystemState {
                 //Image image = new Image(bufferedImage, filepath);
             this.session.addImage(image);
             System.out.println("Image \"" + filepath.getFileName() + "\" added");
+            System.out.println("Image content: \r\n" + image.getFileContent());
             //}
 
         }catch(IOException e){

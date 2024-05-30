@@ -23,6 +23,8 @@ public class MonochromeTransformation extends Transformation{
             }
         }
         image.createStringMatrixFromIntMatrix();
+        image.createStringFromStringMatrix();
+        System.out.println(image.getFileContent());
         return null;
     }
 }
