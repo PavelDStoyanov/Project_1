@@ -21,26 +21,48 @@ public class GrayscaleTransformation extends Transformation{
 //        ColorConvertOp op = new ColorConvertOp(cs, null);
 //        //BufferedImage grayscaleImage = op.filter(image, null);
 //        //return grayscaleImage;
-        if(image.getFileType() != ImageType.grayscale) {
+        if(image.getFormatType() != ImageType.PGM) {
             //Image transformedImage = new Image(image.getBufferedImage(),image.getFilePath(),"");
-            if(image.getFileType() == ImageType.monochrome) {
+            if(image.getFormatType() == ImageType.PBM) {
                 for (int i = 0; i < image.getY(); i++) {
                     for (int j = 0; j < image.getX(); j++) {
-                        if (image.getIntMatrix()[i][j] > 128) {
-                            image.setMatrixElement(i, j, 1);
-                        } else if (image.getIntMatrix()[i][j] < 128) {
+                        if (image.getIntMatrix()[i][j] == 1 ) {
+                            image.setMatrixElement(i, j, 255);
+                        } else if (image.getIntMatrix()[i][j] == 0) {
                             image.setMatrixElement(i, j, 0);
                         }
                     }
                 }
+                image.setFileTitle("P5");
                 image.createStringMatrixFromIntMatrix();
                 image.createStringFromStringMatrix();
-                image.setFileType(ImageType.monochrome);
-            }else if(image.getFileType() == ImageType.withColor){
+                image.setFormatType(ImageType.PGM);
 
             }
 
+
+             else if(image.getFormatType() == ImageType.PPM) {
+                    for (int i = 0; i < image.getY(); i++) {
+                        for (int j = 0; j < image.getX(); j++) {
+                            if (image.getIntMatrix()[i][j] == 1 ) {
+                                image.setMatrixElement(i, j, 128);
+                            } else if (image.getIntMatrix()[i][j] == 0) {
+                                image.setMatrixElement(i, j, 0);
+                            }
+                        }
+                    }
+                    image.setFileTitle("P3");
+                    image.createStringMatrixFromIntMatrix();
+                    image.createStringFromStringMatrix();
+                    image.setFormatType(ImageType.PPM);
+
+                }
+
+
+
+
         }
+        System.out.println("Grayscale image \"" + image.getFileName() + "\" content: \r\n" + image.getFileContent());
         return null;
     }
 }

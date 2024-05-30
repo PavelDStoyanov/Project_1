@@ -30,6 +30,7 @@ public class FileSystemOpenState implements FileSystemState {
             ImageHelper imageHelper = new ImageHelper();
             if(Files.notExists(filePath)){
                 fileHelper.createFile(filePath);
+                //System.out.println("The file doesn't exist");
             }
 
 
@@ -201,7 +202,7 @@ public class FileSystemOpenState implements FileSystemState {
         Transformation transformation = new GrayscaleTransformation();
         this.session.addTransformation(transformation);
 
-        this.session.applyAllTransformations();
+        //this.session.applyAllTransformations();
 
     }
 

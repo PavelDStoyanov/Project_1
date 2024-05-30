@@ -14,7 +14,8 @@ public class Image {
     private String fileContent;
     private int x;
     private int y;
-    private ImageType imageType;
+    //private ImageType imageType;
+    private ImageType formatType;
     private String fileTitle;
 
 
@@ -62,27 +63,22 @@ public class Image {
                     flag = true;
                 }
                 count++;
-
             }
-
             k++;
-
         }
-
-            System.out.println(temp);
-            System.out.println(stopIndex);
+            //System.out.println(temp);
+            // System.out.println(stopIndex);
 
         //String image = file.substring(5,file.length());
         String image = file.substring(stopIndex + 1,file.length());
         String[] imageLines = image.split("\r\n");
 
+
+        String[] dimensionsArray = fileLines[1].split(" ");
         //String[] dimensionsArray = fileLines[0].split(" ");
-             String[] dimensionsArray = fileLines[1].split(" ");
 
         x = Integer.parseInt(dimensionsArray[0]);
         y = Integer.parseInt(dimensionsArray[1]);
-//        x = Integer.parseInt(dimensionsArray[0]);
-//        y = Integer.parseInt(dimensionsArray[1]);
         this.x = x;
         this.y = y;
         //System.out.println(x);
@@ -120,7 +116,7 @@ public class Image {
 
     public void createStringFromStringMatrix(){
         String fileContent = "";
-        fileContent = fileContent + this.x + " " + this.y + "\r\n" ;
+        fileContent = fileContent + this.fileTitle + "\r\n" +  this.x + " " + this.y + "\r\n" ;
         for (int i = 0; i < y; i++) {
 
             for (int j = 0; j < x; j++) {
@@ -140,16 +136,19 @@ public class Image {
     private void setDefaultImageType(String fileTitle){
         switch(fileTitle){
             case "P1":
-                this.imageType = ImageType.monochrome;
+                this.formatType = ImageType.PBM;
+                //this.imageType = ImageType.monochrome;
                 break;
             case "P3":
-                this.imageType = ImageType.grayscale;
+                this.formatType = ImageType.PPM;
+                //this.imageType = ImageType.withColor;
                 break;
             case "P5":
-                this.imageType = ImageType.withColor;
+                this.formatType = ImageType.PGM;
+                //this.imageType = ImageType.grayscale;
                 break;
             default:
-                this.imageType = null;
+                this.formatType = null;
         }
 //        if() {
 //            this.imageType = ImageType.monochrome;
@@ -205,13 +204,21 @@ public class Image {
         return filePath;
     }
 
-    public ImageType getFileType() {
-        return imageType;
+    public ImageType getFormatType() {
+        return formatType;
     }
 
-    public void setFileType(ImageType imageType) {
-        this.imageType = imageType;
+    public void setFormatType(ImageType formatType) {
+        this.formatType = formatType;
     }
+
+    //    public ImageType getFileType() {
+//        return imageType;
+//    }
+//
+//    public void setImageType(ImageType imageType) {
+//        this.imageType = imageType;
+//    }
 
     @Override
     public String toString() {

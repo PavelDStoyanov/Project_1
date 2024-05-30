@@ -13,7 +13,7 @@ public class MonochromeTransformation extends Transformation{
 
     @Override
     public BufferedImage transform(Image image) {
-        if(image.getFileType() != ImageType.monochrome) {//Image transformedImage = new Image(image.getBufferedImage(),image.getFilePath(),"");
+        if(image.getFormatType() != ImageType.PBM) {//Image transformedImage = new Image(image.getBufferedImage(),image.getFilePath(),"");
             for (int i = 0; i < image.getY(); i++) {
                 for (int j = 0; j < image.getX(); j++) {
                     if (image.getIntMatrix()[i][j] > 128) {
@@ -23,9 +23,11 @@ public class MonochromeTransformation extends Transformation{
                     }
                 }
             }
+            image.setFileTitle("P1");
             image.createStringMatrixFromIntMatrix();
             image.createStringFromStringMatrix();
-            image.setFileType(ImageType.monochrome);
+            image.setFormatType(ImageType.PBM);
+
         }
         System.out.println("Monochrome image \"" + image.getFileName() + "\" content: \r\n" + image.getFileContent());
         return null;
