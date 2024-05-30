@@ -200,6 +200,7 @@ public class FileSystemOpenState implements FileSystemState {
         Transformation transformation = new GrayscaleTransformation();
         this.session.addTransformation(transformation);
 
+        this.session.applyAllTransformations();
 
     }
 
@@ -208,6 +209,7 @@ public class FileSystemOpenState implements FileSystemState {
         Transformation transformation = new MonochromeTransformation();
         this.session.addTransformation(transformation);
         //this.session.addTransformation();
+        this.session.applyAllTransformations();
     }
 
     @Override

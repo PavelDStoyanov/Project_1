@@ -13,7 +13,7 @@ public class RotateTransformation extends Transformation{
     }
 
     @Override
-    public BufferedImage transform(BufferedImage image) {
+    public BufferedImage transform(Image image) {
         return null;
     }
 }

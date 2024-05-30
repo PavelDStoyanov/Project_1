@@ -11,7 +11,7 @@ public class NegativeTransformation extends Transformation{
     }
 
     @Override
-    public BufferedImage transform(BufferedImage image) {
+    public BufferedImage transform(Image image) {
         return null;
     }
 }

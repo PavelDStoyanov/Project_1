@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 public abstract class Transformation {
     //private Image image;
     private TransformationType transformationType;
-    public abstract BufferedImage transform(BufferedImage image);
+    public abstract BufferedImage transform(Image image);
 
 
     public void setTransformationType(TransformationType transformationType) {

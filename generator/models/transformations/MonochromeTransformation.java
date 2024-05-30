@@ -11,8 +11,17 @@ public class MonochromeTransformation extends Transformation{
     }
 
     @Override
-    public BufferedImage transform(BufferedImage image) {
-        
+    public BufferedImage transform(Image image) {
+        //Image transformedImage = new Image(image.getBufferedImage(),image.getFilePath(),"");
+        for (int i = 0; i < image.getY(); i++) {
+            for (int j = 0; j < image.getX(); j++) {
+                if(image.getIntMatrix()[i][j] > 128){
+                    image.setMatrixElement(i,j,1);
+                }else if(image.getIntMatrix()[i][j] < 128){
+                    image.setMatrixElement(i,j,0);
+                }
+            }
+        }
         return null;
     }
 }

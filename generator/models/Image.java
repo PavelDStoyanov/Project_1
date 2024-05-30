@@ -17,11 +17,14 @@ public class Image {
     public Image(BufferedImage bufferedImage, Path filePath, String file) {
         this.bufferedImage = bufferedImage;
         this.filePath = filePath;
+        this.x = 0;
+        this.y = 0;
         this.intMatrix = this.createMatrixFromAnImage(file);
+
     }
 
     public void applyTransformation(Transformation transformation){
-        this.bufferedImage = transformation.transform(this.bufferedImage);
+        this.bufferedImage = transformation.transform(this);
     }
 
     public int[][] createMatrixFromAnImage(String file){
@@ -53,6 +56,10 @@ public class Image {
             }
         }
         return intMatrix;
+    }
+
+    public void setMatrixElement(int i, int j, int newValue){
+        this.intMatrix[i][j] = newValue;
     }
 
 
