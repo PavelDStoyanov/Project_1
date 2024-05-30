@@ -23,10 +23,10 @@ public class ImageHelper {
 
 
              //BufferedImage bufferedImage = ImageIO.read(filePath.toFile());
-            if (bufferedImage == null) {
-                System.out.println("Buffered image is null");
-                System.out.println(filePath.toFile());
-            }
+//            if (bufferedImage == null) {
+//                System.out.println("Buffered image is null");
+//                System.out.println(filePath.toFile());
+//            }
             return bufferedImage;
             //return ImageIO.read(new File(filePath.getFileName().toString()));
             //return ImageIO.read(new File("tester.png"));

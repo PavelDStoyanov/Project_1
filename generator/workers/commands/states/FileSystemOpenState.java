@@ -140,13 +140,14 @@ public class FileSystemOpenState implements FileSystemState {
     @Override
     public void saveFile(String input) {
         try {
-            //FileHelper fileHelper = new FileHelper();
+            FileHelper fileHelper = new FileHelper();
             ImageHelper imageHelper = new ImageHelper();
 
             this.session.applyAllTransformations();
 
             for(Image image : this.session.getImages()){
-                imageHelper.write(image.getFilePath(),image.getBufferedImage());
+                //imageHelper.write(image.getFilePath(),image.getBufferedImage());
+                fileHelper.write(image.getFilePath(),image.getFileContent());
             }
 
             //fileHelper.write(this.file, input);
@@ -169,9 +170,9 @@ public class FileSystemOpenState implements FileSystemState {
             }
 
             this.session.applyAllTransformations();
-            imageHelper.write(filePath,this.session.getImages().stream().findFirst().get().getBufferedImage());
+            //imageHelper.write(filePath,this.session.getImages().stream().findFirst().get().getBufferedImage());
             //System.out.println(this.session.getImages().stream().findFirst().get());
-            //fileHelper.write(filePath, input);
+            fileHelper.write(filePath, this.session.getImages().stream().findFirst().get().getFileContent());
             System.out.println("Successfully saved the current file to another location: \"" + filePath.getFileName() + "\"");
         }catch(Exception e){
         System.out.println("Exception occurred: " + e);
@@ -208,8 +209,8 @@ public class FileSystemOpenState implements FileSystemState {
     public void monochrome() {
         Transformation transformation = new MonochromeTransformation();
         this.session.addTransformation(transformation);
-        //this.session.addTransformation();
-        this.session.applyAllTransformations();
+
+        //this.session.applyAllTransformations();
 
     }
 

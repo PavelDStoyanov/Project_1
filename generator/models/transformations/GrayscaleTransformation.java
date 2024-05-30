@@ -15,11 +15,11 @@ public class GrayscaleTransformation extends Transformation{
 
     @Override
     public BufferedImage transform(Image image) {
-        //int x = BufferedImage.TYPE_BYTE_GRAY;
-        ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
-        ColorConvertOp op = new ColorConvertOp(cs, null);
-        //BufferedImage grayscaleImage = op.filter(image, null);
-        //return grayscaleImage;
+//        //int x = BufferedImage.TYPE_BYTE_GRAY;
+//        ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
+//        ColorConvertOp op = new ColorConvertOp(cs, null);
+//        //BufferedImage grayscaleImage = op.filter(image, null);
+//        //return grayscaleImage;
         return null;
     }
 }

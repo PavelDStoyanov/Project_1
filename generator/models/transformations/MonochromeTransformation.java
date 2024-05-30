@@ -1,5 +1,6 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations;
 
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.FileType;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.TransformationType;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
 
@@ -24,7 +25,8 @@ public class MonochromeTransformation extends Transformation{
         }
         image.createStringMatrixFromIntMatrix();
         image.createStringFromStringMatrix();
-        System.out.println(image.getFileContent());
+        image.setFileType(FileType.PBM);
+        System.out.println("Image \"" + image.getFileName() + "\" content: \r\n" + image.getFileContent());
         return null;
     }
 }

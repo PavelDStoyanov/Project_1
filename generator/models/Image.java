@@ -1,5 +1,6 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models;
 
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.FileType;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations.Transformation;
 
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ public class Image {
     private String fileContent;
     private int x;
     private int y;
+    private FileType fileType;
 
 
 
@@ -46,8 +48,8 @@ public class Image {
         y = Integer.parseInt(dimensionsArray[1]);
         this.x = x;
         this.y = y;
-        System.out.println(x);
-        System.out.println(y);
+        //System.out.println(x);
+        //System.out.println(y);
         String[][] stringMatrix = new String[y][x];
         int[][] intMatrix = new int[y][x];
 
@@ -138,6 +140,10 @@ public class Image {
 
     public Path getFilePath() {
         return filePath;
+    }
+
+    public void setFileType(FileType fileType) {
+        this.fileType = fileType;
     }
 
     @Override
