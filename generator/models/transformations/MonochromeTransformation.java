@@ -22,6 +22,7 @@ public class MonochromeTransformation extends Transformation{
                 }
             }
         }
+        image.createStringMatrixFromIntMatrix();
         return null;
     }
 }

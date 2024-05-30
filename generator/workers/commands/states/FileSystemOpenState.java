@@ -210,6 +210,7 @@ public class FileSystemOpenState implements FileSystemState {
         this.session.addTransformation(transformation);
         //this.session.addTransformation();
         this.session.applyAllTransformations();
+
     }
 
     @Override

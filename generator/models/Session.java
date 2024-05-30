@@ -35,7 +35,9 @@ public class Session {
     public void transformImages(Transformation transformation){
         for(Image element : images){
             element.applyTransformation(transformation);
+            //element.createStringMatrixFromIntMatrix();
         }
+
     }
 
     public void applyAllTransformations(){
