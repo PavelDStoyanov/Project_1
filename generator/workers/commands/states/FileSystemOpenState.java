@@ -1,6 +1,7 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.states;
 
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states.FileSystemState;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.Direction;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations.*;
@@ -223,8 +224,8 @@ public class FileSystemOpenState implements FileSystemState {
     }
 
     @Override
-    public void rotate() {
-        Transformation transformation = new RotateTransformation();
+    public void rotate(Direction direction) {
+        Transformation transformation = new RotateTransformation(direction);
         this.session.addTransformation(transformation);
         //this.session.addTransformation();
     }

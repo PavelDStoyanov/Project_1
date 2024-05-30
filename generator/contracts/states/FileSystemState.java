@@ -1,5 +1,6 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states;
 
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.Direction;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
@@ -17,7 +18,7 @@ public interface FileSystemState {
     void grayscale();
     void monochrome();
     void negative();
-    void rotate();
+    void rotate(Direction direction);
     void undo();
     void addImage(Path filepath);
     void sessionInfo();

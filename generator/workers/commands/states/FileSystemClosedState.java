@@ -1,6 +1,7 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.states;
 
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.states.FileSystemState;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.Direction;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.invoker.FileSystem;
@@ -70,7 +71,7 @@ public class FileSystemClosedState implements FileSystemState {
     }
 
     @Override
-    public void rotate() {
+    public void rotate(Direction direction) {
         System.out.println("A file should be opened first");
     }
 

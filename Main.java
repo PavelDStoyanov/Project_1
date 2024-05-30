@@ -2,6 +2,7 @@ package bg.tu_varna.sit.b1.f22621682.project1.Project_1;
 
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.contracts.commands.Command;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.CommandType;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.Direction;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Session;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.workers.commands.implementations.additional.*;
@@ -61,7 +62,7 @@ public class Main {
             menu.put(CommandType.monochrome, new MonochromeCommand(fileSystem));
             menu.put(CommandType.grayscale, new GrayscaleCommand(fileSystem));
             menu.put(CommandType.negative, new NegativeCommand(fileSystem));
-            menu.put(CommandType.rotate, new RotateCommand(fileSystem));
+            menu.put(CommandType.rotate, new RotateCommand(fileSystem, Direction.left));
             menu.put(CommandType.undo, new UndoCommand(fileSystem));
             menu.put(CommandType.add, new AddImageCommand(fileSystem, filePath));
             menu.put(CommandType.sessioninfo, new SessionInfoCommand(fileSystem));
