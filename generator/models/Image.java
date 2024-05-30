@@ -1,6 +1,6 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models;
 
-import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.FileType;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.ImageType;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations.Transformation;
 
 import java.awt.image.BufferedImage;
@@ -14,7 +14,8 @@ public class Image {
     private String fileContent;
     private int x;
     private int y;
-    private FileType fileType;
+    private ImageType imageType;
+    private String fileTitle;
 
 
 
@@ -26,6 +27,8 @@ public class Image {
         this.intMatrix = this.createMatrixFromAnImage(fileContent);
         this.createStringMatrixFromIntMatrix();
         this.fileContent = fileContent;
+        this.setDefaultImageType(this.fileTitle);
+
         //this.createStringFromStringMatrix();
 
     }
@@ -35,17 +38,51 @@ public class Image {
     }
 
     public int[][] createMatrixFromAnImage(String file){
+        if(file == null){
+            System.out.println("The file is empty");
+            return null;
+        }else{
+
+
         int x, y, z = 0;
 
         String[] fileLines = file.split("\r\n");
 
-        String image = file.substring(5,file.length());
+        int k = 0;
+        String temp = "";
+        int stopIndex = 0;
+        int count = 0;
+        boolean flag = false;
+        while(flag == false){
+            temp = temp + file.charAt(k);
+            if(file.charAt(k) == '\n') {
+
+                if(count == 1){
+                    stopIndex = k;
+                    flag = true;
+                }
+                count++;
+
+            }
+
+            k++;
+
+        }
+
+            System.out.println(temp);
+            System.out.println(stopIndex);
+
+        //String image = file.substring(5,file.length());
+        String image = file.substring(stopIndex + 1,file.length());
         String[] imageLines = image.split("\r\n");
 
-        String[] dimensionsArray = fileLines[0].split(" ");
+        //String[] dimensionsArray = fileLines[0].split(" ");
+             String[] dimensionsArray = fileLines[1].split(" ");
 
         x = Integer.parseInt(dimensionsArray[0]);
         y = Integer.parseInt(dimensionsArray[1]);
+//        x = Integer.parseInt(dimensionsArray[0]);
+//        y = Integer.parseInt(dimensionsArray[1]);
         this.x = x;
         this.y = y;
         //System.out.println(x);
@@ -62,7 +99,10 @@ public class Image {
                 intMatrix[i][j] = Integer.parseInt(stringMatrix[i][j]);
             }
         }
+
+        this.setFileTitle(fileLines[0]);
         return intMatrix;
+        }
     }
 
     public void createStringMatrixFromIntMatrix(){
@@ -97,10 +137,33 @@ public class Image {
         this.intMatrix[i][j] = newValue;
     }
 
+    private void setDefaultImageType(String fileTitle){
+        switch(fileTitle){
+            case "P1":
+                this.imageType = ImageType.monochrome;
+                break;
+            case "P3":
+                this.imageType = ImageType.grayscale;
+                break;
+            case "P5":
+                this.imageType = ImageType.withColor;
+                break;
+            default:
+                this.imageType = null;
+        }
+//        if() {
+//            this.imageType = ImageType.monochrome;
+//        }else if() {
+//            this.imageType = ImageType.grayscale;
+//        }else if(){
+//            this.imageType = ImageType.withColor;
+//        }
+    }
 
 
-
-
+    public void setFileTitle(String fileTitle) {
+        this.fileTitle = fileTitle;
+    }
 
     public String[][] getStringMatrix() {
         return stringMatrix;
@@ -142,8 +205,12 @@ public class Image {
         return filePath;
     }
 
-    public void setFileType(FileType fileType) {
-        this.fileType = fileType;
+    public ImageType getFileType() {
+        return imageType;
+    }
+
+    public void setFileType(ImageType imageType) {
+        this.imageType = imageType;
     }
 
     @Override

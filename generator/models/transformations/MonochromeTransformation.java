@@ -1,6 +1,6 @@
 package bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.transformations;
 
-import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.FileType;
+import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.ImageType;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.enums.TransformationType;
 import bg.tu_varna.sit.b1.f22621682.project1.Project_1.generator.models.Image;
 
@@ -13,20 +13,21 @@ public class MonochromeTransformation extends Transformation{
 
     @Override
     public BufferedImage transform(Image image) {
-        //Image transformedImage = new Image(image.getBufferedImage(),image.getFilePath(),"");
-        for (int i = 0; i < image.getY(); i++) {
-            for (int j = 0; j < image.getX(); j++) {
-                if(image.getIntMatrix()[i][j] > 128){
-                    image.setMatrixElement(i,j,1);
-                }else if(image.getIntMatrix()[i][j] < 128){
-                    image.setMatrixElement(i,j,0);
+        if(image.getFileType() != ImageType.monochrome) {//Image transformedImage = new Image(image.getBufferedImage(),image.getFilePath(),"");
+            for (int i = 0; i < image.getY(); i++) {
+                for (int j = 0; j < image.getX(); j++) {
+                    if (image.getIntMatrix()[i][j] > 128) {
+                        image.setMatrixElement(i, j, 1);
+                    } else if (image.getIntMatrix()[i][j] < 128) {
+                        image.setMatrixElement(i, j, 0);
+                    }
                 }
             }
+            image.createStringMatrixFromIntMatrix();
+            image.createStringFromStringMatrix();
+            image.setFileType(ImageType.monochrome);
         }
-        image.createStringMatrixFromIntMatrix();
-        image.createStringFromStringMatrix();
-        image.setFileType(FileType.PBM);
-        System.out.println("Image \"" + image.getFileName() + "\" content: \r\n" + image.getFileContent());
+        System.out.println("Monochrome image \"" + image.getFileName() + "\" content: \r\n" + image.getFileContent());
         return null;
     }
 }
