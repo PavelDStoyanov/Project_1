@@ -295,8 +295,24 @@ public class FileSystemOpenState implements FileSystemState {
     }
 
     @Override
-    public void collage() {
+    public void collage(Path filePath) {
+        String collage = "";
+        for(Image element : this.session.getImages()){
+            collage = collage + element.getFileContent() + "\r\n";
+        }
+        System.out.println(collage);
+        try {
+            FileHelper fileHelper = new FileHelper();
 
+            if(Files.notExists(filePath)){
+                fileHelper.createFile(filePath);
+            }
+
+            fileHelper.write(filePath, collage);
+            System.out.println("Successfully saved the current file to another location: \"" + filePath.getFileName() + "\"");
+        }catch(Exception e){
+            System.out.println("Exception occurred: " + e);
+        }
     }
 
 

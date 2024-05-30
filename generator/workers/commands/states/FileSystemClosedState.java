@@ -96,7 +96,7 @@ public class FileSystemClosedState implements FileSystemState {
     }
 
     @Override
-    public void collage() {
+    public void collage(Path filePath) {
         System.out.println("A file should be opened first");
     }
 

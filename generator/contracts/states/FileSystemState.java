@@ -23,5 +23,5 @@ public interface FileSystemState {
     void addImage(Path filepath);
     void sessionInfo();
     void switchSession(int sessionId);
-    void collage();
+    void collage(Path filePath);
 }

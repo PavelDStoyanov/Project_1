@@ -67,7 +67,7 @@ public class Main {
             menu.put(CommandType.add, new AddImageCommand(fileSystem, filePath));
             menu.put(CommandType.sessioninfo, new SessionInfoCommand(fileSystem));
             menu.put(CommandType.switchsession, new SwitchSessionCommand(fileSystem, 1 /*should be changed*/));
-            menu.put(CommandType.collage, new CollageCommand(fileSystem));
+            menu.put(CommandType.collage, new CollageCommand(fileSystem, filePath));
 
 
 
