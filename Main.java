@@ -20,8 +20,8 @@ public class Main {
         String choice;
         FileSystem fileSystem = new FileSystem();
         Scanner scanner = new Scanner(System.in);
-        CommandType commands = CommandType.help;
-        String input = "Teston";
+        CommandType commands = CommandType.HELP;
+        String input = "Test";
         String filePathFolder = "D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\";
         Path defaultFilePath = Path.of("D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\default.txt");
         //Path filePath2 = Path.of("D:\\tu varna\\OOP1\\project1\\src\\bg\\tu_varna\\sit\\b1\\f22621682\\project1\\Project_1\\files\\new.txt");
@@ -39,7 +39,7 @@ public class Main {
             System.out.println("open <file>, close, save, saveas <file>, help, exit");
             System.out.println("grayscale, monochrome, negative, rotate, undo, add, sessioninfo, switchsession, collage");
             System.out.print("> ");
-            choice = scanner.nextLine().toLowerCase();
+            choice = scanner.nextLine().toUpperCase();
             String[] inputs = choice.split(" ");
             try{
                 commands = CommandType.valueOf(inputs[0]);
@@ -52,22 +52,22 @@ public class Main {
             }else{
                 filePath = defaultFilePath;
             }
-            menu.put(CommandType.open, new OpenFileCommand(fileSystem, filePath));
-            menu.put(CommandType.close, new CloseFileCommand(fileSystem));
-            menu.put(CommandType.save, new SaveFileCommand(fileSystem, input));
-            menu.put(CommandType.saveas, new SaveFileAsCommand(fileSystem, filePath,input));
-            menu.put(CommandType.help, new HelpCommand(fileSystem));
-            menu.put(CommandType.exit, new ExitCommand(fileSystem));
+            menu.put(CommandType.OPEN, new OpenFileCommand(fileSystem, filePath));
+            menu.put(CommandType.CLOSE, new CloseFileCommand(fileSystem));
+            menu.put(CommandType.SAVE, new SaveFileCommand(fileSystem, input));
+            menu.put(CommandType.SAVEAS, new SaveFileAsCommand(fileSystem, filePath,input));
+            menu.put(CommandType.HELP, new HelpCommand(fileSystem));
+            menu.put(CommandType.EXIT, new ExitCommand(fileSystem));
 
-            menu.put(CommandType.monochrome, new MonochromeCommand(fileSystem));
-            menu.put(CommandType.grayscale, new GrayscaleCommand(fileSystem));
-            menu.put(CommandType.negative, new NegativeCommand(fileSystem));
-            menu.put(CommandType.rotate, new RotateCommand(fileSystem, Direction.left));
-            menu.put(CommandType.undo, new UndoCommand(fileSystem));
-            menu.put(CommandType.add, new AddImageCommand(fileSystem, filePath));
-            menu.put(CommandType.sessioninfo, new SessionInfoCommand(fileSystem));
-            menu.put(CommandType.switchsession, new SwitchSessionCommand(fileSystem, 1 /*should be changed*/));
-            menu.put(CommandType.collage, new CollageCommand(fileSystem, filePath));
+            menu.put(CommandType.MONOCHROME, new MonochromeCommand(fileSystem));
+            menu.put(CommandType.GRAYSCALE, new GrayscaleCommand(fileSystem));
+            menu.put(CommandType.NEGATIVE, new NegativeCommand(fileSystem));
+            menu.put(CommandType.ROTATE, new RotateCommand(fileSystem, Direction.LEFT));
+            menu.put(CommandType.UNDO, new UndoCommand(fileSystem));
+            menu.put(CommandType.ADD, new AddImageCommand(fileSystem, filePath));
+            menu.put(CommandType.SESSIONINFO, new SessionInfoCommand(fileSystem));
+            menu.put(CommandType.SWITCHSESSION, new SwitchSessionCommand(fileSystem, 1 /*should be changed*/));
+            menu.put(CommandType.COLLAGE, new CollageCommand(fileSystem, filePath));
 
 
 
@@ -79,7 +79,7 @@ public class Main {
 
             fileSystem.execute(menu.get(commands));
 
-        }while(!commands.equals(CommandType.exit));
+        }while(!commands.equals(CommandType.EXIT));
 
 
         /*do {

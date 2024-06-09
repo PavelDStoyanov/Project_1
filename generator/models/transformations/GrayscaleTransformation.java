@@ -11,7 +11,7 @@ import java.awt.image.ColorConvertOp;
 
 public class GrayscaleTransformation extends Transformation{
     public GrayscaleTransformation() {
-        super.setTransformationType(TransformationType.grayscale);
+        super.setTransformationType(TransformationType.GRAYSCALE);
     }
 
     @Override

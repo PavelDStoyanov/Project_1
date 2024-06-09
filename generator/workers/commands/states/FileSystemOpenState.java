@@ -190,7 +190,17 @@ public class FileSystemOpenState implements FileSystemState {
                 "save           saves the currently open file \n" +
                 "saveas <file>  saves the currently open file in <file> \n" +
                 "help           prints this information \n" +
-                "exit           exists the program \n");
+                "exit           exists the program \n" +
+
+                "grayscale      transforms the image into grayscale format \n" +
+                "monochrome     transforms the image into monochrome format \n" +
+                "negative       transforms the image into negative color format \n" +
+                "rotate         rotates the image to the left \n" +
+                "undo           undo the last transformation \n" +
+                "add            adds an image to the session \n" +
+                "sessioninfo    prints the information about the current session \n" +
+                "switchsession <id>     switches the session to session with id <id> \n" +
+                "collage <file>         makes a collage from the images in the current session and saves it into <file> \n");
     }
 
     @Override

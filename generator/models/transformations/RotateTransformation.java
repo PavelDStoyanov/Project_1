@@ -13,7 +13,7 @@ public class RotateTransformation extends Transformation{
 
     public RotateTransformation(Direction direction) {
         this.direction = direction;
-        super.setTransformationType(TransformationType.rotate);
+        super.setTransformationType(TransformationType.ROTATE);
     }
     //    public RotateTransformation() {
 //        super.setTransformationType(TransformationType.rotate);

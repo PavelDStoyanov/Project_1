@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class NegativeTransformation extends Transformation{
     public NegativeTransformation() {
-        super.setTransformationType(TransformationType.negative);
+        super.setTransformationType(TransformationType.NEGATIVE);
     }
 
     @Override

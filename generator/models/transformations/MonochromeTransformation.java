@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class MonochromeTransformation extends Transformation{
     public MonochromeTransformation() {
-        super.setTransformationType(TransformationType.monochrome);
+        super.setTransformationType(TransformationType.MONOCHROME);
     }
 
     @Override
